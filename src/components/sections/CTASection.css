@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+.cta-section {
+  min-height: 100vh;
+  background: #121212;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 100px 5%;
+}
+
+/* White curve at top */
+.cta-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+}
+
+.cta-container {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.cta-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 6vw, 80px);
+  line-height: 1.1;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-subtext {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 40px 0;
+  letter-spacing: 0.5px;
+}
+
+/* Rotating circular badge */
+.cta-badge-wrapper {
+  margin-bottom: 40px;
+}
+
+.cta-badge {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rotating-text {
+  width: 100%;
+  height: 100%;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circular-text {
+  fill: rgba(255, 255, 255, 0.8);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Email input form */
+.cta-form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.cta-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 8px 8px 8px 32px;
+  transition: all 0.3s ease;
+}
+
+.cta-input-wrapper:focus-within {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cta-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  padding: 12px 16px;
+}
+
+.cta-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cta-submit-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.cta-submit-button:hover {
+  background: #ffffff;
+  transform: scale(1.05);
+}
+
+.cta-submit-button svg {
+  color: #121212;
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 80px 5%;
+  }
+
+  .cta-heading {
+    font-size: clamp(36px, 8vw, 48px);
+  }
+
+  .cta-subtext {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .cta-badge {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cta-badge-wrapper {
+    margin-bottom: 40px;
+  }
+
+  .circular-text {
+    font-size: 12px;
+  }
+
+  .cta-input-wrapper {
+    padding: 6px 6px 6px 24px;
+  }
+
+  .cta-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .cta-submit-button {
+    width: 44px;
+    height: 44px;
+  }
+}

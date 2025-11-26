@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+.services-section {
+  min-height: 100vh;
+  background: #121212;
+  color: #ffffff;
+  padding: 80px 5%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 20; /* Higher than statistics section */
+}
+
+.services-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.services-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4vw, 56px);
+  text-align: center;
+  margin-bottom: 80px;
+  letter-spacing: -0.02em;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 60px 350px 1fr 60px;
+  align-items: center;
+  gap: 40px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.service-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.service-item:hover {
+  padding-left: 20px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+}
+
+.service-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.service-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 2vw, 28px);
+  margin: 0;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.service-description {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: clamp(13px, 1.2vw, 16px);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.service-arrow {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.service-arrow:hover {
+  transform: translateX(8px);
+}
+
+.service-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Cursor-following image */
+.service-cursor-image {
+  position: fixed;
+  width: 280px;
+  height: 210px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .service-item {
+    grid-template-columns: 50px 1fr 50px;
+    gap: 20px;
+    padding: 30px 0;
+  }
+
+  .service-description {
+    grid-column: 2;
+    margin-top: 10px;
+  }
+
+  .service-arrow {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 5%;
+  }
+
+  .services-heading {
+    margin-bottom: 60px;
+  }
+
+  .service-item {
+    grid-template-columns: 40px 1fr 40px;
+    gap: 15px;
+    padding: 25px 0;
+  }
+
+  .service-item:hover {
+    padding-left: 10px;
+  }
+
+  .service-title {
+    font-size: 22px;
+  }
+
+  .service-description {
+    font-size: 14px;
+  }
+}

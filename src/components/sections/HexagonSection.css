@@ -1,0 +1,169 @@
+/* Main Section */
+.hexagon-section {
+  position: relative;
+  background: #121212;
+  height: 120vh; /* Reduced height for scroll effect that triggers at section top */
+  overflow: hidden;
+}
+
+/* Container */
+.hexagon-container {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  height: 80vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Row */
+.header-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6rem 2rem 2rem;
+  z-index: 20;
+  background: #121212;
+}
+
+@media (min-width: 768px) {
+  .header-row {
+    padding: 6rem 4rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-row {
+    padding: 6rem 6rem 2rem;
+  }
+}
+
+.header-content {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* Header Text */
+.header-text {
+  flex: 1;
+}
+
+.section-title {
+  font-size: 3.75rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* Counter */
+.header-counter {
+  display: flex;
+  align-items: center;
+}
+
+.counter-number {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .counter-number {
+    font-size: 7rem;
+  }
+}
+
+/* Hexagon Grid Wrapper */
+.hex-grid-wrapper {
+  width: 100%;
+  flex: 1;
+  position: relative;
+}
+
+/* Hexagon Grid Container */
+.hex-grid-container {
+  width: 100%;
+  height: 100%;
+  max-height: 600px; /* Show 7-8 rows */
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.hex-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding-top: 50px; /* Start hexagons even closer to visible area */
+}
+
+/* Hex Row */
+.hex-row {
+  display: flex;
+  gap: 110px; /* Moderate horizontal spacing between hexagons */
+  margin-top: -70px; /* Maximum overlap for very tight vertical spacing */
+}
+
+.hex-row:first-child {
+  margin-top: 0; /* Remove negative margin for first row */
+}
+
+/* Hex Tile */
+.hex-tile {
+  flex-shrink: 0;
+}
+
+/* Fade Gradients */
+.hex-fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px; /* Increased gradient length */
+  background: linear-gradient(
+    to bottom,
+    #121212 0%,
+    #121212CC 25%,
+    #12121280 50%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hex-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px; /* Increased gradient length */
+  background: linear-gradient(
+    to top,
+    #121212 0%,
+    #121212CC 25%,
+    #12121280 50%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+

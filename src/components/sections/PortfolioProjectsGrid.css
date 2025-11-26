@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+.portfolio-projects-grid-section {
+  background: #000000;
+  padding: 80px 0;
+  color: #ffffff;
+}
+
+/* Marquee Tabs */
+.categories-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: marqueeScroll 30s linear infinite;
+  width: fit-content;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.category-tab {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  padding: 0;
+  background: none;
+  color: #4a4a4a;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.category-tab.active {
+  background: none;
+  color: #ffffff;
+  transform: scale(1.15);
+  font-weight: 700;
+}
+
+.category-tab:hover {
+  color: #6a6a6a;
+}
+
+.category-tab.active:hover {
+  color: #ffffff;
+}
+
+/* Projects Grid */
+.projects-grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 5%;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.grid-project-card {
+  background: #000000;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.grid-project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-image {
+  width: 100%;
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  background-color: #4a4a4a;
+  margin-bottom: 20px;
+}
+
+.project-info-grid {
+  text-align: left;
+}
+
+.project-info-grid h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.project-info-grid p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+
+.project-info-grid span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .project-image {
+    height: 280px;
+  }
+
+  .category-tab {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+}
