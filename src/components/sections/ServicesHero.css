@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+.services-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+  padding: 8rem 4rem;
+  overflow: hidden;
+}
+
+/* Animated square */
+.animated-square {
+  position: absolute;
+  background: #B8B8B8;
+  z-index: 5;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated-square.initial {
+  width: 600px;
+  height: 400px;
+  bottom: -400px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.animated-square.covering-text {
+  width: 600px;
+  height: 400px;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.animated-square.full-screen {
+  width: 200vw;
+  height: 200vh;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.services-hero-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.services-hero-title {
+  font-family: 'Clash Display Variable', sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Original white text */
+.title-text {
+  color: #ffffff;
+  display: block;
+}
+
+/* Inverted black text - only visible where square overlaps */
+.title-text-inverted {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #000000;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 15;
+  pointer-events: none;
+}
+
+.animated-square.covering-text ~ .services-hero-container .title-text-inverted {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.animated-square.full-screen ~ .services-hero-container .title-text-inverted {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    padding: 6rem 2rem;
+  }
+
+  .services-hero-title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-hero-title {
+    font-size: 36px;
+  }
+}

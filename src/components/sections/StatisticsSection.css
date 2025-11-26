@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+.statistics-section {
+  min-height: 450vh; /* Extended more for complete scroll effect */
+  background: #F5F5F5;
+  position: relative;
+  padding: 0;
+  z-index: 10; /* Ensure proper stacking */
+}
+
+.statistics-container {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  gap: 8rem;
+}
+
+/* Left side - Main text - Sticky */
+.statistics-left-sticky {
+  position: fixed;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
+  z-index: 5;
+}
+
+.statistics-headline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 1.1;
+  color: #000;
+  margin: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Right side - Statistics - Animated */
+.statistics-right-animated {
+  position: fixed;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
+  height: 200px;
+  z-index: 5;
+}
+
+.statistic-item-animated {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.stat-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px, 8vw, 120px);
+  line-height: 1;
+  color: #000;
+  margin: 0.5rem 0;
+}
+
+.stat-description {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+  max-width: 400px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .statistics-container {
+    flex-direction: column;
+    gap: 4rem;
+    padding: 4rem 5%;
+  }
+
+  .statistics-left {
+    position: relative;
+    top: auto;
+    transform: none;
+    text-align: center;
+  }
+
+  .statistics-right {
+    width: 100%;
+    align-items: center;
+  }
+
+  .statistic-item {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics-section {
+    min-height: 120vh;
+  }
+
+  .statistics-headline {
+    font-size: 36px;
+  }
+
+  .stat-value {
+    font-size: 60px;
+  }
+
+  .statistics-right {
+    gap: 3rem;
+  }
+}

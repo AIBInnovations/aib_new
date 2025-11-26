@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+.testimonials-section {
+  min-height: 80vh;
+  background: #121212;
+  color: #ffffff;
+  padding: 60px 5%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.testimonials-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4vw, 56px);
+  text-align: center;
+  margin-bottom: 100px;
+  letter-spacing: 2px;
+}
+
+.testimonials-content {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 100px;
+  align-items: center;
+}
+
+/* LEFT: Avatars */
+.testimonials-avatars {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: -250px;
+  overflow: visible;
+}
+
+.circular-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.avatars-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-wrapper {
+  position: absolute;
+  transition: all 700ms ease-out;
+}
+
+.avatar-wrapper-circular {
+  position: absolute;
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  left: 50%;
+  top: 50%;
+  margin-left: -48px;
+  margin-top: -48px;
+}
+
+.avatar-button {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: all 700ms ease-out;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  width: 64px;
+  height: 64px;
+}
+
+.avatar-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, transparent 40%, rgba(255, 255, 255, 0.3) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.avatar-button.active {
+  width: 96px;
+  height: 96px;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  opacity: 1;
+  filter: blur(0);
+}
+
+.avatar-button:not(.active) {
+  transform: scale(0.9);
+  opacity: 0.7;
+  filter: blur(0.5px);
+}
+
+.avatar-button:not(.active):hover {
+  opacity: 0.9;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Name + Role */
+.avatar-info {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 24px;
+  transition: all 500ms ease-out;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.avatar-info.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(-50%) scale(1);
+}
+
+.avatar-info:not(.active) {
+  opacity: 0;
+  filter: blur(0.5px);
+  transform: translateY(-50%) scale(0.9);
+  pointer-events: none;
+}
+
+.avatar-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  transition: all 500ms ease-out;
+}
+
+.avatar-info.active .avatar-name {
+  font-size: 30px;
+}
+
+.avatar-info:not(.active) .avatar-name {
+  font-size: 24px;
+}
+
+.avatar-role {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  transition: all 500ms ease-out;
+}
+
+.avatar-info.active .avatar-role {
+  font-size: 18px;
+}
+
+.avatar-info:not(.active) .avatar-role {
+  font-size: 16px;
+}
+
+/* RIGHT: Quotes */
+.testimonials-quotes {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.quote-text {
+  position: relative;
+  max-width: 100%;
+  font-family: 'Space Mono', monospace;
+  line-height: 41.6px;
+  letter-spacing: 2px;
+  transition: all 700ms ease-out;
+  margin: 0;
+  text-align: left;
+  padding-right: 5%;
+}
+
+.quote-text.active {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+  filter: blur(0);
+  font-size: 28px;
+}
+
+.quote-text:not(.active) {
+  color: rgba(255, 255, 255, 0.25);
+  opacity: 0.4;
+  filter: blur(0.5px);
+  font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .testimonials-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .testimonials-avatars {
+    height: 500px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .avatar-info {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-left: 0;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .avatar-info.active {
+    transform: scale(1);
+  }
+
+  .avatar-info:not(.active) {
+    transform: scale(0.9);
+  }
+
+  .testimonials-quotes {
+    text-align: center;
+  }
+
+  .quote-text {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 60px 5%;
+  }
+
+  .testimonials-heading {
+    margin-bottom: 60px;
+  }
+
+  .testimonials-avatars {
+    height: 400px;
+  }
+
+  .avatar-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .avatar-button.active {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatar-name {
+    font-size: 18px;
+  }
+
+  .avatar-role {
+    font-size: 14px;
+  }
+
+  .quote-text.active {
+    font-size: 20px;
+  }
+
+  .quote-text:not(.active) {
+    font-size: 14px;
+  }
+}
