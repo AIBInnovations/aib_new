@@ -3,6 +3,7 @@
   position: relative;
   background: #121212;
   height: 120vh; /* Reduced height for scroll effect that triggers at section top */
+  margin: 0;
   overflow: hidden;
 }
 
