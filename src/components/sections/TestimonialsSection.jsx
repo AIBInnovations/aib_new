@@ -3,7 +3,7 @@ import './TestimonialsSection.css';
 
 const TestimonialsSection = ({
   initialIndex = 0,
-  autoPlay = true,
+  autoPlay = false,
   intervalMs = 4000,
   title = "TESTIMONIES"
 }) => {
@@ -21,7 +21,7 @@ const TestimonialsSection = ({
     {
       id: '2',
       name: 'Bhavya Kothari',
-      role: 'Chief Technology Officer',
+      role: 'C Technology Officer',
       quote: 'The team at AIB demonstrated exceptional skill in building our platform. Their attention to detail and commitment to quality is unmatched.',
       avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop'
     },
@@ -145,13 +145,11 @@ const TestimonialsSection = ({
                       />
                     </button>
 
-                    {/* Name + Role - only show for center */}
-                    {isCenter && (
-                      <div className="avatar-info active">
-                        <h3 className="avatar-name">{item.name}</h3>
-                        <p className="avatar-role">{item.role}</p>
-                      </div>
-                    )}
+                    {/* Name + Role */}
+                    <div className="avatar-info">
+                      <h3 className="avatar-name">{item.name}</h3>
+                      <p className="avatar-role">{item.role}</p>
+                    </div>
                   </div>
                 );
               })}

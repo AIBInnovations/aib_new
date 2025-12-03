@@ -1,51 +1,49 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ServicesListSection.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ServicesListSection = () => {
-  const rowRefs = useRef([]);
-  const [collapsedRows, setCollapsedRows] = useState([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    const cards = cardRefs.current.filter(Boolean);
+    const section = sectionRef.current;
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    if (!section || cards.length === 0) return;
+
+    const totalCards = cards.length;
+    const cardSpacing = 12; // Percentage spacing between cards to show full headers
+    const startPosition = 20; // First card pins at 10% from top
+    const lastCardTopPosition = startPosition + ((totalCards - 1) * cardSpacing);
+
+    const ctx = gsap.context(() => {
+      cards.forEach((card, index) => {
+        // Calculate sticky position from top: 10% + 7% for each card
+        const topPosition = startPosition + (index * cardSpacing);
+
+        // Set z-index so later cards stack on top of earlier ones
+        gsap.set(card, { zIndex: index + 1 });
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: `top ${topPosition}%`,
+          // Use the last card as the end trigger for all cards
+          endTrigger: cards[totalCards - 1],
+          // Unpin when last card reaches its position
+          end: `top ${lastCardTopPosition}%`,
+          pin: true,
+          pinSpacing: false,
+        });
+      });
+    }, section);
+
+    return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const collapsed = [];
-
-      rowRefs.current.forEach((row, index) => {
-        if (!row) return;
-
-        const rect = row.getBoundingClientRect();
-        const titleElement = row.querySelector('.service-title');
-        const titleRect = titleElement?.getBoundingClientRect();
-
-        // Sticky position threshold - trigger earlier on mobile (lower values = higher on screen)
-        const baseTop = isMobile ? 80 : 150;
-        const increment = isMobile ? 60 : 100;
-        const stickyThreshold = baseTop + (index * increment);
-
-        // Collapse if the title has reached or passed the sticky position
-        if (titleRect && titleRect.bottom <= stickyThreshold + 80) {
-          collapsed.push(index);
-        }
-      });
-
-      setCollapsedRows(collapsed);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile]);
   const services = [
     {
       number: '01',
@@ -99,48 +97,36 @@ const ServicesListSection = () => {
   ];
 
   return (
-    <section className="services-list-section">
+    <section className="services-list-section" ref={sectionRef}>
       <div className="services-list-container">
-        {services.map((service, index) => {
-          const isCollapsed = collapsedRows.includes(index);
+        {services.map((service, index) => (
+          <div
+            key={index}
+            ref={el => cardRefs.current[index] = el}
+            className="card"
+          >
+            <div className="service-header">
+              <div className="service-number">{service.number}</div>
+              <h2 className="service-title">{service.title}</h2>
+            </div>
 
-          // Calculate sticky position - lower values on mobile for earlier trigger
-          const baseTop = isMobile ? 80 : 150;
-          const increment = isMobile ? 60 : 100;
-          let stickyTop = baseTop + (index * increment);
-
-          const zIndex = index + 1; // Later rows should be on top
-
-          return (
-            <div
-              key={index}
-              ref={(el) => (rowRefs.current[index] = el)}
-              className={`service-row ${isCollapsed ? 'collapsed' : ''}`}
-              style={{ top: `${stickyTop}px`, zIndex }}
-            >
-              <div className="service-header">
-                <div className="service-number">{service.number}</div>
-                <h2 className="service-title">{service.title}</h2>
-              </div>
-
-              <div className="service-content-wrapper">
-                <div className="service-body">
-                  <div className="service-left">
-                    <div className="service-tags">
-                      {service.tags.map((tag, tagIndex) => (
-                        <span key={tagIndex} className="service-tag">{tag}</span>
-                      ))}
-                    </div>
-                    <p className="service-description">{service.description}</p>
+            <div className="service-content-wrapper">
+              <div className="service-body">
+                <div className="service-left">
+                  <div className="service-tags">
+                    {service.tags.map((tag, tagIndex) => (
+                      <span key={tagIndex} className="service-tag">{tag}</span>
+                    ))}
                   </div>
-                  <div className="service-right">
-                    <div className="service-image" style={{ backgroundImage: `url(${service.imageUrl})` }}></div>
-                  </div>
+                  <p className="service-description">{service.description}</p>
+                </div>
+                <div className="service-right">
+                  <div className="service-image" style={{ backgroundImage: `url(${service.imageUrl})` }}></div>
                 </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </section>
   );

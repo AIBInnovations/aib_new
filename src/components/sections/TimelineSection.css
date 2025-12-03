@@ -315,3 +315,26 @@
     top: 1920px;
   }
 }
+
+@media (max-width: 480px) {
+  .timeline-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .timeline-heading {
+    font-size: 32px;
+  }
+
+  .timeline-year {
+    font-size: 16px;
+  }
+
+  .timeline-title {
+    font-size: 22px;
+  }
+
+  .timeline-description {
+    font-size: 13px;
+  }
+}

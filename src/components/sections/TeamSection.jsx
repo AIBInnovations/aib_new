@@ -105,7 +105,7 @@ const TeamSection = () => {
     const carousel = carouselRef.current;
     if (carousel) {
       // Set initial scroll position to middle section
-      const cardWidth = getCardWidth();
+      const cardWidth = 320 + 4; // card width + gap
       carousel.scrollLeft = teamMembers.length * cardWidth;
 
       carousel.addEventListener('scroll', updateCardTransforms);
