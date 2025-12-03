@@ -34,7 +34,7 @@
 
 .service-item {
   display: grid;
-  grid-template-columns: 60px 350px 1fr 60px;
+  grid-template-columns: 60px minmax(200px, 300px) 1fr 60px;
   align-items: center;
   gap: 40px;
   padding: 30px 0;
@@ -65,7 +65,7 @@
   font-size: clamp(20px, 2vw, 28px);
   margin: 0;
   letter-spacing: -0.01em;
-  white-space: nowrap;
+  line-height: 1.3;
 }
 
 .service-description {
@@ -126,21 +126,39 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .service-item {
+    grid-template-columns: 50px minmax(180px, 250px) 1fr 50px;
+    gap: 25px;
+  }
+}
+
 @media (max-width: 1024px) {
   .service-item {
     grid-template-columns: 50px 1fr 50px;
     gap: 20px;
-    padding: 30px 0;
+    padding: 25px 0;
+  }
+
+  .service-title {
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .service-description {
     grid-column: 2;
-    margin-top: 10px;
+    grid-row: 2;
+    margin-top: -10px;
   }
 
   .service-arrow {
     grid-column: 3;
-    grid-row: 1;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .service-cursor-image {
+    display: none;
   }
 }
 
@@ -150,13 +168,14 @@
   }
 
   .services-heading {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
+    font-size: 32px;
   }
 
   .service-item {
     grid-template-columns: 40px 1fr 40px;
-    gap: 15px;
-    padding: 25px 0;
+    gap: 12px;
+    padding: 20px 0;
   }
 
   .service-item:hover {
@@ -164,10 +183,69 @@
   }
 
   .service-title {
-    font-size: 22px;
+    font-size: 18px;
+    line-height: 1.3;
   }
 
   .service-description {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .service-number {
+    font-size: 12px;
+  }
+
+  .service-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 40px 4%;
+  }
+
+  .services-heading {
+    margin-bottom: 40px;
+    font-size: 28px;
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  .service-number {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .service-title {
+    font-size: 18px;
+    padding-right: 50px;
+  }
+
+  .service-description {
+    font-size: 13px;
+    padding-right: 50px;
+    margin-top: 4px;
+  }
+
+  .service-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px;
+  }
+
+  .service-item:hover {
+    padding-left: 0;
   }
 }

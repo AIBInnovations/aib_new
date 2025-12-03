@@ -4,6 +4,17 @@ import './ServicesListSection.css';
 const ServicesListSection = () => {
   const rowRefs = useRef([]);
   const [collapsedRows, setCollapsedRows] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,8 +27,10 @@ const ServicesListSection = () => {
         const titleElement = row.querySelector('.service-title');
         const titleRect = titleElement?.getBoundingClientRect();
 
-        // Sticky position threshold (where titles should stick)
-        const stickyThreshold = 150 + (index * 100);
+        // Sticky position threshold - trigger earlier on mobile (lower values = higher on screen)
+        const baseTop = isMobile ? 80 : 150;
+        const increment = isMobile ? 60 : 100;
+        const stickyThreshold = baseTop + (index * increment);
 
         // Collapse if the title has reached or passed the sticky position
         if (titleRect && titleRect.bottom <= stickyThreshold + 80) {
@@ -32,7 +45,7 @@ const ServicesListSection = () => {
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
   const services = [
     {
       number: '01',
@@ -91,8 +104,10 @@ const ServicesListSection = () => {
         {services.map((service, index) => {
           const isCollapsed = collapsedRows.includes(index);
 
-          // Calculate sticky position
-          let stickyTop = 150 + (index * 100);
+          // Calculate sticky position - lower values on mobile for earlier trigger
+          const baseTop = isMobile ? 80 : 150;
+          const increment = isMobile ? 60 : 100;
+          let stickyTop = baseTop + (index * increment);
 
           const zIndex = index + 1; // Later rows should be on top
 

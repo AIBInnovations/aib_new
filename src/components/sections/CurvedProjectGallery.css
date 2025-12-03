@@ -57,9 +57,7 @@
 /* Project Item */
 .project-item {
   flex-shrink: 0;
-  /* Base calculation: (viewport width - gaps - padding) / 5 cards */
-  /* Approximating for different screen sizes to show ~5 cards */
-  width: calc((100vw - 8rem - 6rem) / 5);
+  width: 280px;
   max-width: 320px;
   min-width: 200px;
   height: 100%;
@@ -67,31 +65,31 @@
 
 @media (min-width: 640px) {
   .project-item {
-    width: calc((100vw - 8rem - 6rem) / 5);
+    width: 280px;
   }
 }
 
 @media (min-width: 768px) {
   .project-item {
-    width: calc((100vw - 8rem - 6rem) / 5);
+    width: 280px;
   }
 }
 
 @media (min-width: 1024px) {
   .project-item {
-    width: calc((100vw - 8rem - 6rem) / 5);
+    width: 280px;
   }
 }
 
 @media (min-width: 1440px) {
   .project-item {
-    width: 260px; /* Fixed width for larger screens */
+    width: 260px;
   }
 }
 
 @media (min-width: 1920px) {
   .project-item {
-    width: 340px; /* Fixed width for very large screens */
+    width: 340px;
   }
 }
 

@@ -75,9 +75,17 @@ const TeamSection = () => {
     });
   };
 
+  const getCardWidth = () => {
+    const width = window.innerWidth;
+    if (width <= 480) return 200 + 10; // card + gap
+    if (width <= 768) return 250 + 12;
+    if (width <= 1024) return 300 + 16;
+    return 320 + 20; // desktop: card 320px + gap 20px
+  };
+
   const handleNext = () => {
     if (!carouselRef.current) return;
-    const cardWidth = 320 + 4; // card width + gap
+    const cardWidth = getCardWidth();
     carouselRef.current.scrollBy({
       left: cardWidth,
       behavior: 'smooth'
@@ -86,7 +94,7 @@ const TeamSection = () => {
 
   const handlePrev = () => {
     if (!carouselRef.current) return;
-    const cardWidth = 320 + 4; // card width + gap
+    const cardWidth = getCardWidth();
     carouselRef.current.scrollBy({
       left: -cardWidth,
       behavior: 'smooth'
@@ -97,7 +105,7 @@ const TeamSection = () => {
     const carousel = carouselRef.current;
     if (carousel) {
       // Set initial scroll position to middle section
-      const cardWidth = 320 + 4; // card width + gap
+      const cardWidth = getCardWidth();
       carousel.scrollLeft = teamMembers.length * cardWidth;
 
       carousel.addEventListener('scroll', updateCardTransforms);

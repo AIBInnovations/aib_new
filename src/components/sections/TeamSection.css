@@ -339,7 +339,8 @@
   display: flex;
   align-items: center;
   transform-style: preserve-3d;
-  pointer-events: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .team-carousel-new::-webkit-scrollbar {
@@ -348,8 +349,8 @@
 
 .team-carousel-track-new {
   display: flex;
-  gap: 4px;
-  padding: 0 calc(50% - 150px);
+  gap: 20px;
+  padding: 0 calc(50vw - 160px);
   width: max-content;
   transform-style: preserve-3d;
 }
@@ -361,11 +362,12 @@
   border-radius: 20px;
   overflow: hidden;
   background: #D9D9D9;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
   transform: scale(0.85) rotateY(0deg);
   opacity: 0.6;
   transform-style: preserve-3d;
   backface-visibility: visible;
+  scroll-snap-align: center;
 }
 
 .team-card-image-new {
@@ -469,23 +471,35 @@
   height: 24px;
 }
 
-@media (max-width: 768px) {
-  .team-section-new {
-    padding: 80px 0;
-  }
-
+@media (max-width: 1024px) {
   .team-carousel-track-new {
-    gap: 20px;
-    padding: 0 5%;
+    gap: 16px;
+    padding: 0 calc(50vw - 150px);
   }
 
   .team-card-new {
     width: 300px;
-    height: 400px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-section-new {
+    padding: 60px 0 40px;
+  }
+
+  .team-carousel-track-new {
+    gap: 12px;
+    padding: 0 calc(50vw - 125px);
+  }
+
+  .team-card-new {
+    width: 250px;
+    height: 300px;
   }
 
   .team-testimonial-new {
-    margin-top: 60px;
+    margin-top: 40px;
   }
 
   .carousel-arrow {
@@ -499,5 +513,73 @@
 
   .carousel-arrow-right {
     right: 2%;
+  }
+
+  .team-carousel-wrapper::before,
+  .team-carousel-wrapper::after {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-section-new {
+    padding: 40px 0 30px;
+  }
+
+  .team-header-new {
+    padding: 0 4%;
+  }
+
+  .team-title-new {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .team-description-new {
+    font-size: 14px;
+  }
+
+  .team-carousel-track-new {
+    gap: 10px;
+    padding: 0 calc(50vw - 100px);
+  }
+
+  .team-card-new {
+    width: 200px;
+    height: 250px;
+  }
+
+  .team-carousel-new {
+    padding: 40px 0;
+  }
+
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .team-carousel-wrapper::before,
+  .team-carousel-wrapper::after {
+    width: 40px;
+  }
+
+  .team-testimonial-new {
+    padding: 0 4% 10px;
+    margin-top: 20px;
+  }
+
+  .testimonial-text-new {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .author-avatar-new {
+    width: 40px;
+    height: 40px;
   }
 }

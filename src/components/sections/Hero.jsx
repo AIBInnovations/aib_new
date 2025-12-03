@@ -17,7 +17,7 @@ const Hero = () => {
             Where vision meets intelligent innovation
           </p>
         </div>
-      </div>
+      </div>  
     </section>
   );
 };

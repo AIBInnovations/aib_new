@@ -132,6 +132,23 @@
   flex-shrink: 0;
 }
 
+/* Mobile: Smaller hexagons */
+@media (max-width: 767px) {
+  .hex-tile {
+    width: 100px !important;
+    height: 87px !important;
+  }
+
+  .hex-row {
+    gap: 60px;
+    margin-top: -40px;
+  }
+
+  .hex-row:first-child {
+    margin-top: 0;
+  }
+}
+
 /* Fade Gradients */
 .hex-fade-top {
   position: absolute;

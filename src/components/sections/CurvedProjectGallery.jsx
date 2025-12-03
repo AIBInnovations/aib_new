@@ -122,7 +122,7 @@ export default function CurvedProjectGallery({
   };
 
   return (
-    <section className="curved-section">
+    <section className="curved-section bg-black">
       <div className="curved-container">
         <div className="curved-inner">
           {/* Hidden SVG defining container curve (convex) */}
