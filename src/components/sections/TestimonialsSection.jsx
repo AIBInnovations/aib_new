@@ -1,14 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './TestimonialsSection.css';
+import EllipseImage from '../../assets/Ellipse 3.png';
 
 const TestimonialsSection = ({
   initialIndex = 0,
-  autoPlay = false,
+  autoPlay = true,
   intervalMs = 4000,
   title = "TESTIMONIES"
 }) => {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const [isMobile, setIsMobile] = useState(false);
   const intervalRef = useRef(null);
+
+  // Check for mobile/tablet screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const testimonials = [
     {
@@ -94,9 +106,6 @@ const TestimonialsSection = ({
     };
   };
 
-  // Get the center testimonial for displaying quote
-  const centerTestimonial = testimonials[activeIndex];
-
   return (
     <section className="testimonials-section">
       <div className="testimonials-container">
@@ -121,6 +130,9 @@ const TestimonialsSection = ({
 
             {/* Avatars */}
             <div className="avatars-circle">
+              <div className='gradint-image'>
+                <img src={EllipseImage} alt="Ellipse gradient" className="ellipse-bg" />
+              </div>
               {testimonials.map((item, index) => {
                 const positionStyle = getCircularPosition(index);
                 const isCenter = positionStyle.isCenter;
@@ -145,11 +157,13 @@ const TestimonialsSection = ({
                       />
                     </button>
 
-                    {/* Name + Role */}
-                    <div className="avatar-info">
-                      <h3 className="avatar-name">{item.name}</h3>
-                      <p className="avatar-role">{item.role}</p>
-                    </div>
+                    {/* Name + Role - only show for center */}
+                    {isCenter && (
+                      <div className="avatar-info bg-amber-600 active">
+                        <h3 className="avatar-name">{item.name}</h3>
+                        <p className="avatar-role">{item.role}</p>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -158,9 +172,46 @@ const TestimonialsSection = ({
 
           {/* RIGHT: Quote for center testimonial */}
           <div className="testimonials-quotes">
-            <blockquote className="quote-text active">
-              "{centerTestimonial.quote}"
-            </blockquote>
+            <div className="quotes-circle">
+              {testimonials.map((item, index) => {
+                const totalItems = testimonials.length;
+                // Calculate position relative to active (circular)
+                let relativePos = index - activeIndex;
+                // Wrap around for circular behavior
+                if (relativePos > totalItems / 2) relativePos -= totalItems;
+                if (relativePos < -totalItems / 2) relativePos += totalItems;
+
+                // Circular arc aligned at 45 degrees with avatar circle
+                // Using same angle step as avatars for sync
+                const angleStep = (2 * Math.PI) / totalItems;
+                const angle = relativePos * angleStep;
+
+                // Radius for quotes arc
+                const radius = 280;
+
+                // Calculate position on arc - 45 degree tilt
+                // This creates a curved path where paragraph 3 aligns with paragraph 1
+                const xOffset = -Math.abs(Math.sin(angle)) * radius * 0.4;
+                const yOffset = Math.sin(angle) * radius;
+
+                const isActive = relativePos === 0;
+                const isVisible = Math.abs(relativePos) <= 1;
+
+                return (
+                  <blockquote
+                    key={item.id}
+                    className={`quote-text ${isActive ? 'active' : ''}`}
+                    style={{
+                      transform: `translate(${xOffset}px, ${yOffset}px)`,
+                      opacity: isActive ? 1 : (isVisible ? 0.25 : 0),
+                      visibility: Math.abs(relativePos) <= 2 ? 'visible' : 'hidden'
+                    }}
+                  >
+                    "{item.quote}"
+                  </blockquote>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

@@ -13,14 +13,16 @@
   padding: 100px 5%;
 }
 
-/* White curve at top */
+/* Curve image at top */
 .cta-curve {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  height: 200px;
+  height: auto;
   pointer-events: none;
+  z-index: 1;
 }
 
 .cta-container {
@@ -192,5 +194,13 @@
   .cta-submit-button {
     width: 44px;
     height: 44px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .cta-curve {
+    top: 5%;          /* mobile compact area */
+    width: 140%;      /* curve ko curve jaisa dikhane ke liye */
   }
 }

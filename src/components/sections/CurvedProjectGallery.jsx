@@ -63,10 +63,18 @@ export default function CurvedProjectGallery({
   const [offset, setOffset] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: '50%', y: '50%' });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, offset: 0 });
+  const [hasDragged, setHasDragged] = useState(false);
+  const [currentSpeed, setCurrentSpeed] = useState(speed);
   const rafRef = useRef(null);
   const prevTimeRef = useRef(null);
   const trackRef = useRef(null);
   const buttonRef = useRef(null);
+  const velocityRef = useRef(0);
+  const lastDragX = useRef(0);
+  const lastDragTime = useRef(0);
+  const decayRafRef = useRef(null);
 
   // ===== Auto-scroll =====
   useEffect(() => {
@@ -79,7 +87,7 @@ export default function CurvedProjectGallery({
         if (track) {
           const totalWidth = track.scrollWidth / 2; // duplicated list
           setOffset((prev) => {
-            const next = prev - speed * dt;
+            const next = prev - currentSpeed * dt;
             return next <= -totalWidth ? 0 : next;
           });
         }
@@ -93,11 +101,133 @@ export default function CurvedProjectGallery({
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       prevTimeRef.current = null;
     };
-  }, [autoScroll, speed, isPaused]);
+  }, [autoScroll, currentSpeed, isPaused]);
+
+  // ===== Speed decay back to normal =====
+  useEffect(() => {
+    if (isPaused || currentSpeed === speed) return;
+
+    const decaySpeed = () => {
+      setCurrentSpeed((curr) => {
+        const diff = curr - speed;
+        // Decay by 5% each frame, stop when close enough
+        if (Math.abs(diff) < 1) return speed;
+        return curr - diff * 0.03;
+      });
+      decayRafRef.current = requestAnimationFrame(decaySpeed);
+    };
+
+    decayRafRef.current = requestAnimationFrame(decaySpeed);
+    return () => {
+      if (decayRafRef.current) cancelAnimationFrame(decayRafRef.current);
+    };
+  }, [isPaused, currentSpeed, speed]);
 
   const displayPanels = autoScroll ? [...panels, ...panels] : panels;
 
   const containerClipId = 'container-curve';
+
+  // ===== Drag Handlers =====
+  const handleDragStart = (clientX) => {
+    setIsDragging(true);
+    setIsPaused(true);
+    setHasDragged(false);
+    setDragStart({ x: clientX, offset });
+    lastDragX.current = clientX;
+    lastDragTime.current = performance.now();
+    velocityRef.current = 0;
+  };
+
+  const handleDragMove = (clientX) => {
+    if (!isDragging) return;
+    const diff = clientX - dragStart.x;
+
+    // Mark as dragged if moved more than 5px (to distinguish from clicks)
+    if (Math.abs(diff) > 5) {
+      setHasDragged(true);
+    }
+
+    // Calculate velocity (pixels per second)
+    const now = performance.now();
+    const dt = now - lastDragTime.current;
+    if (dt > 0) {
+      const dx = clientX - lastDragX.current;
+      velocityRef.current = (dx / dt) * 1000; // Convert to px/s
+    }
+    lastDragX.current = clientX;
+    lastDragTime.current = now;
+
+    let newOffset = dragStart.offset + diff;
+
+    // Handle infinite scroll wrapping
+    if (autoScroll && trackRef.current) {
+      const totalWidth = trackRef.current.scrollWidth / 2;
+      if (newOffset > 0) {
+        newOffset = -totalWidth + newOffset;
+      } else if (newOffset < -totalWidth) {
+        newOffset = newOffset + totalWidth;
+      }
+    }
+
+    setOffset(newOffset);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    if (autoScroll) {
+      // Apply drag velocity to scroll speed (negative velocity = dragging left = faster scroll)
+      const boostMultiplier = 3; // How much drag affects speed
+      const minSpeed = speed * 0.5; // Minimum speed (half of normal)
+      const maxSpeed = speed * 8; // Maximum speed (8x normal)
+
+      // Velocity is negative when dragging left (same direction as scroll)
+      const newSpeed = Math.min(maxSpeed, Math.max(minSpeed, speed - velocityRef.current * boostMultiplier / 100));
+      setCurrentSpeed(newSpeed);
+      setIsPaused(false);
+    }
+  };
+
+  // Prevent link clicks when dragging
+  const handleLinkClick = (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+    }
+  };
+
+  // Mouse events
+  const onMouseDown = (e) => {
+    e.preventDefault();
+    handleDragStart(e.clientX);
+  };
+
+  const onMouseMove = (e) => {
+    handleDragMove(e.clientX);
+  };
+
+  const onMouseUp = () => {
+    handleDragEnd();
+  };
+
+  const onMouseLeave = () => {
+    if (isDragging) {
+      handleDragEnd();
+    } else if (autoScroll) {
+      setIsPaused(false);
+    }
+  };
+
+  // Touch events
+  const onTouchStart = (e) => {
+    handleDragStart(e.touches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    handleDragMove(e.touches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    handleDragEnd();
+  };
 
   // Handle mouse enter for button fill animation
   const handleMouseEnter = (e) => {
@@ -145,9 +275,18 @@ export default function CurvedProjectGallery({
           {/* Main scrolling container with curved top & bottom */}
           <div
             className="main-scroll-container"
-            style={{ clipPath: `url(#${containerClipId})` }}
-            onMouseEnter={() => autoScroll && setIsPaused(true)}
-            onMouseLeave={() => autoScroll && setIsPaused(false)}
+            style={{
+              clipPath: `url(#${containerClipId})`,
+              cursor: isDragging ? 'grabbing' : 'grab',
+            }}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseEnter={() => !isDragging && autoScroll && setIsPaused(true)}
+            onMouseLeave={onMouseLeave}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             <ul
               ref={trackRef}
@@ -168,6 +307,8 @@ export default function CurvedProjectGallery({
                       href={panel.href || '#'}
                       aria-label={panel.title || 'Project'}
                       className="project-link"
+                      onClick={handleLinkClick}
+                      draggable={false}
                     >
                       {/* Image fills the card height */}
                       <div className="image-container">
@@ -176,6 +317,7 @@ export default function CurvedProjectGallery({
                             src={panel.image}
                             alt={panel.title || 'Project'}
                             className="project-image"
+                            draggable={false}
                           />
                         ) : (
                           <div className="project-placeholder" />

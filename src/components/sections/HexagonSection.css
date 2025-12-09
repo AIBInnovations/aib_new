@@ -2,7 +2,7 @@
 .hexagon-section {
   position: relative;
   background: #121212;
-  height: 120vh; /* Reduced height for scroll effect that triggers at section top */
+  height: 100vh; /* Reduced height for scroll effect that triggers at section top */
   margin: 0;
   overflow: hidden;
 }
@@ -131,10 +131,18 @@
 /* Hex Tile */
 .hex-tile {
   flex-shrink: 0;
+  width: 180px;
+  height: 156px;
+  overflow: visible;
 }
 
 /* Mobile: Smaller hexagons */
+
+
+
 @media (max-width: 767px) {
+
+  
   .hex-tile {
     width: 100px !important;
     height: 87px !important;
@@ -185,3 +193,14 @@
   pointer-events: none;
 }
 
+
+
+@media (max-width: 767px) {
+  .hex-grid-container {
+    max-height: 420px; /* smaller visible window = centered highlight */
+  }
+
+  .hex-grid {
+    padding-top: 120px !important; /* push grid DOWN so highlight sits center */
+  }
+}
