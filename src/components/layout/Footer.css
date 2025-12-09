@@ -31,7 +31,7 @@
 .tagline-text {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: clamp(32px, 3vw, 48px);
+  font-size: clamp(28px, 3vw, 48px);
   line-height: 1.2;
   margin: 0;
   color: #1a1a1a;
@@ -288,8 +288,9 @@
   }
 
   .footer-nav {
-    flex-direction: column;
-    gap: 30px;
+    flex-direction: row;
+    gap: 80px;
+    line-height: 0.9;
   }
 
   .company-name-text {

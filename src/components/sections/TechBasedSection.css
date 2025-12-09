@@ -25,55 +25,55 @@
 }
 
 .tech-based-text-overlay {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
 }
 
 .tech-text {
-  position: absolute;
   font-family: 'Clash Display Variable', sans-serif;
   font-weight: 800;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
+  text-align: center;
 }
 
 .tech-text-we-are {
-  top: 22%;
-  left: 22%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(80px, 12vw, 180px);
+  font-size: clamp(40px, 10vw, 1500px);
   letter-spacing: 8px;
   color: rgba(231, 231, 231, 0.41);
+  margin-bottom: 10px;
 }
 
-.tech-text-tech {
-  top: 48%;
-  left: 19%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(100px, 15vw, 220px);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 1);
+.tech-text-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 8vw, 80px);
+  width: 100%;
 }
 
+.tech-text-tech,
 .tech-text-based {
-  top: 48%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(100px, 15vw, 220px);
+  font-family: 'Clash Display Variable', sans-serif;
+  font-size: clamp(50px, 12vw, 150px);
   font-weight: 700;
-  color: rgba(255, 255, 255, 1);
+  /* color: rgba(255, 255, 255, 1); */
+  color: black;
 }
 
 .tech-text-company {
-  top: 75%;
-  left: 48%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(80px, 12vw, 180px);
+  font-size: clamp(40px, 10vw, 150px);
   letter-spacing: 8px;
   color: rgba(231, 231, 231, 0.41);
+  margin-top: 10px;
 }
 
 .tech-based-curve {
@@ -93,27 +93,101 @@
   bottom: 0;
 }
 
+/* Fix for large screens (1176px and above) - ensure WE ARE and COMPANY are visible */
+@media (min-width: 1176px) {
+  .tech-based-text-overlay {
+    z-index: 25;
+  }
+
+  .tech-text-we-are {
+    font-size: clamp(80px, 10vw, 150px);
+    margin-bottom: 20px;
+  }
+
+  .tech-text-company {
+    font-size: clamp(80px, 10vw, 150px);
+    margin-top: 20px;
+  }
+
+  .tech-text-tech,
+  .tech-text-based {
+    font-size: clamp(120px, 14vw, 200px);
+  }
+
+  .tech-text-main {
+    gap: clamp(80px, 10vw, 180px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .tech-text-we-are,
+  .tech-text-company {
+    letter-spacing: 6px;
+  }
+
+  .tech-text-main {
+    gap: clamp(15px, 6vw, 100px);
+  }
+}
+
 @media (max-width: 768px) {
   .tech-based-section {
-    height: 600px;
+    height: 500px;
   }
 
   .tech-based-image-container {
-    height: 650px;
+    height: 550px;
   }
 
   .tech-text-we-are,
   .tech-text-company {
-    font-size: clamp(40px, 10vw, 80px);
+    font-size: clamp(28px, 8vw, 60px);
     letter-spacing: 4px;
   }
 
   .tech-text-tech,
   .tech-text-based {
-    font-size: clamp(60px, 12vw, 100px);
+    font-size: clamp(40px, 10vw, 80px);
+  }
+
+  .tech-text-main {
+    gap: clamp(10px, 5vw, 50px);
   }
 
   .tech-based-curve {
-    height: 200px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-based-section {
+    height: 400px;
+  }
+
+  .tech-based-image-container {
+    height: 450px;
+  }
+
+  .tech-based-text-overlay {
+    z-index: 25;
+  }
+
+  .tech-text-we-are,
+  .tech-text-company {
+    font-size: clamp(20px, 7vw, 40px);
+    letter-spacing: 2px;
+  }
+
+  .tech-text-tech,
+  .tech-text-based {
+    font-size: clamp(32px, 9vw, 60px);
+  }
+
+  .tech-text-main {
+    gap: 15px;
+  }
+
+  .tech-based-curve {
+    height: 80px;
   }
 }

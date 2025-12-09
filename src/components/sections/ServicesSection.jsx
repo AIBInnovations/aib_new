@@ -4,6 +4,17 @@ import './ServicesSection.css';
 const ServicesSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredService, setHoveredService] = useState(null);
+  const [openAccordion, setOpenAccordion] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const services = [
     {
@@ -62,9 +73,10 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="service-item"
-              onMouseEnter={() => setHoveredService(index)}
-              onMouseLeave={() => setHoveredService(null)}
+              className={`service-item ${openAccordion === index ? 'accordion-open' : ''}`}
+              onMouseEnter={() => !isMobile && setHoveredService(index)}
+              onMouseLeave={() => !isMobile && setHoveredService(null)}
+              onClick={() => isMobile && setOpenAccordion(openAccordion === index ? null : index)}
             >
               <span className="service-number">{service.number}</span>
               <h3 className="service-title">{service.title}</h3>
@@ -74,6 +86,14 @@ const ServicesSection = () => {
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
+
+              {/* Accordion content for mobile */}
+              <div className="accordion-content">
+                <div
+                  className="accordion-image"
+                  style={{ backgroundImage: `url(${service.imageUrl})` }}
+                />
+              </div>
             </div>
           ))}
         </div>

@@ -2,20 +2,22 @@ import './TechBasedSection.css';
 
 const TechBasedSection = () => {
   return (
-    <section className="tech-based-section">
+    <section className="tech-based-section bg-red-500">
       <div className="tech-based-image-container">
         <div className="tech-based-image"></div>
       </div>
 
-      <div className="tech-based-text-overlay">
+      <div className="tech-based-text-overlay ">
         <div className="tech-text tech-text-we-are">WE ARE</div>
-        <div className="tech-text tech-text-tech">TECH</div>
-        <div className="tech-text tech-text-based">BASED</div>
+        <div className="tech-text-main">
+          <span className="tech-text-tech">TECH</span>
+          <span className="tech-text-based">BASED</span>
+        </div>
         <div className="tech-text tech-text-company">COMPANY</div>
       </div>
 
       <svg
-        className="tech-based-curve tech-based-curve-top"
+        className="tech-based-curve tech-based-curve-top "
         preserveAspectRatio="none"
         viewBox="0 0 1000 340"
       >

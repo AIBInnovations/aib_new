@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 
 function App() {
+
   return (
     <Router>
       <Header />

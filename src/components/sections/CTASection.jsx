@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CTASection.css';
+import ctaCurveImage from '../../assets/Ellipse 8 (4).png';
 
 const CTASection = () => {
   const [email, setEmail] = useState('');
@@ -12,20 +13,8 @@ const CTASection = () => {
 
   return (
     <section className="cta-section">
-      {/* White curve at top */}
-      <svg className="cta-curve" viewBox="0 0 1440 200" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255, 255, 255, 0.3)" />
-            <stop offset="100%" stopColor="rgba(255, 255, 255, 0)" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M 0,150 Q 720,0 1440,150 L 1440,200 L 0,200 Z"
-          stroke="none"
-          fill="url(#curveGradient)"
-        />
-      </svg>
+      {/* Curve image at top */}
+      <img className="cta-curve" src={ctaCurveImage} alt="" />
 
       <div className="cta-container">
         <h2 className="cta-heading">

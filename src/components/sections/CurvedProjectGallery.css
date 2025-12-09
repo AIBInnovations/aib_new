@@ -4,6 +4,8 @@
   position: relative;
   background: #121212;
   padding: 6rem 0;
+  margin: 0;
+  margin-bottom: -1px;
   overflow: hidden;
 }
 
@@ -31,6 +33,11 @@
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   width: 100%;
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Projects Track */
@@ -57,9 +64,7 @@
 /* Project Item */
 .project-item {
   flex-shrink: 0;
-  /* Base calculation: (viewport width - gaps - padding) / 5 cards */
-  /* Approximating for different screen sizes to show ~5 cards */
-  width: calc((100vw - 8rem - 6rem) / 5);
+  width: 280px;
   max-width: 320px;
   min-width: 200px;
   height: 100%;
@@ -67,31 +72,31 @@
 
 @media (min-width: 640px) {
   .project-item {
-    width: calc((100vw - 8rem - 6rem) / 5);
+    width: 280px;
   }
 }
 
 @media (min-width: 768px) {
   .project-item {
-    width: calc((100vw - 8rem - 6rem) / 5);
+    width: 280px;
   }
 }
 
 @media (min-width: 1024px) {
   .project-item {
-    width: calc((100vw - 8rem - 6rem) / 5);
+    width: 280px;
   }
 }
 
 @media (min-width: 1440px) {
   .project-item {
-    width: 260px; /* Fixed width for larger screens */
+    width: 260px;
   }
 }
 
 @media (min-width: 1920px) {
   .project-item {
-    width: 340px; /* Fixed width for very large screens */
+    width: 340px;
   }
 }
 
@@ -174,11 +179,14 @@
 
 /* CTA Button */
 .cta-container {
+  width: 100vw;
+  text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
+  z-index: 2;
   margin-top: 2rem;
   position: relative;
-  z-index: 10;
 }
 
 .cta-button {

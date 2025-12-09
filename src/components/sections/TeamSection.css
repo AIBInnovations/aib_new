@@ -261,7 +261,8 @@
 
 /* New Team Section Styles */
 .team-section-new {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   background: #1a1a1a;
   padding: 60px 0 40px;
   color: #ffffff;
@@ -339,7 +340,8 @@
   display: flex;
   align-items: center;
   transform-style: preserve-3d;
-  pointer-events: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .team-carousel-new::-webkit-scrollbar {
@@ -348,8 +350,8 @@
 
 .team-carousel-track-new {
   display: flex;
-  gap: 4px;
-  padding: 0 calc(50% - 150px);
+  gap: 20px;
+  padding: 0 calc(50vw - 160px);
   width: max-content;
   transform-style: preserve-3d;
 }
@@ -361,11 +363,12 @@
   border-radius: 20px;
   overflow: hidden;
   background: #D9D9D9;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
   transform: scale(0.85) rotateY(0deg);
   opacity: 0.6;
   transform-style: preserve-3d;
   backface-visibility: visible;
+  scroll-snap-align: center;
 }
 
 .team-card-image-new {
@@ -469,23 +472,87 @@
   height: 24px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .team-section-new {
-    padding: 80px 0;
+    padding: 50px 0 30px;
+  }
+
+  .team-title-new {
+    font-size: clamp(40px, 5vw, 60px);
   }
 
   .team-carousel-track-new {
-    gap: 20px;
-    padding: 0 5%;
+    gap: 16px;
+    padding: 0 calc(50vw - 150px);
   }
 
   .team-card-new {
-    width: 300px;
-    height: 400px;
+    width: 280px;
+    height: 320px;
   }
 
+  .carousel-arrow {
+    width: 45px;
+    height: 45px;
+  }
+
+  .carousel-arrow-left {
+    left: 3%;
+  }
+
+  .carousel-arrow-right {
+    right: 3%;
+  }
+
+  .team-carousel-wrapper::before,
+  .team-carousel-wrapper::after {
+    width: 150px;
+  }
+
+  /* Testimonial responsive - tablet */
   .team-testimonial-new {
-    margin-top: 60px;
+    padding: 0 4% 15px;
+    margin-top: 30px;
+  }
+
+  .testimonial-text-new {
+    font-size: 15px;
+    margin-bottom: 25px;
+    max-width: 700px;
+  }
+
+  .testimonial-author-new {
+    gap: 14px;
+  }
+
+  .author-avatar-new {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+  }
+
+  .author-name-new {
+    font-size: 17px;
+  }
+
+  .author-role-new {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-section-new {
+    padding: 60px 0 40px;
+  }
+
+  .team-carousel-track-new {
+    gap: 12px;
+    padding: 0 calc(50vw - 125px);
+  }
+
+  .team-card-new {
+    width: 250px;
+    height: 300px;
   }
 
   .carousel-arrow {
@@ -499,5 +566,133 @@
 
   .carousel-arrow-right {
     right: 2%;
+  }
+
+  .team-carousel-wrapper::before,
+  .team-carousel-wrapper::after {
+    width: 80px;
+  }
+
+  /* Testimonial responsive - mobile */
+  .team-testimonial-new {
+    padding: 0 5% 15px;
+    margin-top: 25px;
+  }
+
+  .testimonial-text-new {
+    font-size: 14px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .testimonial-author-new {
+    gap: 12px;
+  }
+
+  .author-avatar-new {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  .author-name-new {
+    font-size: 15px;
+  }
+
+  .author-role-new {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-section-new {
+    padding: 40px 0 30px;
+  }
+
+  .team-header-new {
+    padding: 0 4%;
+  }
+
+  .team-title-new {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .team-description-new {
+    font-size: 14px;
+  }
+
+  .team-carousel-track-new {
+    gap: 10px;
+    padding: 0 calc(50vw - 100px);
+  }
+
+  .team-card-new {
+    width: 200px;
+    height: 250px;
+  }
+
+  .team-carousel-new {
+    padding: 40px 0;
+  }
+
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .team-carousel-wrapper::before,
+  .team-carousel-wrapper::after {
+    width: 40px;
+  }
+
+  /* Testimonial responsive - small mobile */
+  .team-testimonial-new {
+    padding: 0 4% 10px;
+    margin-top: 15px;
+  }
+
+  .testimonial-text-new {
+    font-size: 12px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .testimonial-author-new {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .author-avatar-new {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    flex-shrink: 0;
+  }
+
+  .author-info-new {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .author-name-new {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .author-role-new {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
