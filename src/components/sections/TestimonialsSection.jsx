@@ -159,7 +159,7 @@ const TestimonialsSection = ({
 
                     {/* Name + Role - only show for center */}
                     {isCenter && (
-                      <div className="avatar-info bg-amber-600 active">
+                      <div className="avatar-info active">
                         <h3 className="avatar-name">{item.name}</h3>
                         <p className="avatar-role">{item.role}</p>
                       </div>
