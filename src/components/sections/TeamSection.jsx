@@ -44,9 +44,14 @@ const TeamSection = () => {
     if (!carouselRef.current) return;
 
     const cards = carouselRef.current.querySelectorAll('.team-card-new');
+    if (!cards.length) return;
+
     const carouselCenter = carouselRef.current.offsetWidth / 2 + carouselRef.current.scrollLeft;
 
     cards.forEach((card) => {
+      // Check if card is still connected to DOM
+      if (!card || !card.isConnected) return;
+
       const cardCenter = card.offsetLeft + card.offsetWidth / 2;
       const distance = carouselCenter - cardCenter;
       const absDistance = Math.abs(distance);
@@ -103,34 +108,35 @@ const TeamSection = () => {
 
   useEffect(() => {
     const carousel = carouselRef.current;
-    if (carousel) {
-      // Set initial scroll position to middle section
-      const cardWidth = 320 + 4; // card width + gap
-      carousel.scrollLeft = teamMembers.length * cardWidth;
+    if (!carousel) return;
 
-      carousel.addEventListener('scroll', updateCardTransforms);
-      updateCardTransforms(); // Initial call
+    // Set initial scroll position to middle section
+    const cardWidth = 320 + 4; // card width + gap
+    carousel.scrollLeft = teamMembers.length * cardWidth;
 
-      // Handle infinite scroll
-      const handleInfiniteScroll = () => {
-        const scrollWidth = carousel.scrollWidth;
-        const scrollLeft = carousel.scrollLeft;
-        const clientWidth = carousel.clientWidth;
-        const sectionWidth = teamMembers.length * cardWidth;
+    // Handle infinite scroll
+    const handleInfiniteScroll = () => {
+      if (!carousel) return;
+      const scrollWidth = carousel.scrollWidth;
+      const scrollLeft = carousel.scrollLeft;
+      const clientWidth = carousel.clientWidth;
+      const sectionWidth = teamMembers.length * cardWidth;
 
-        if (scrollLeft <= 0) {
-          carousel.scrollLeft = sectionWidth;
-        } else if (scrollLeft >= scrollWidth - clientWidth) {
-          carousel.scrollLeft = sectionWidth;
-        }
-      };
+      if (scrollLeft <= 0) {
+        carousel.scrollLeft = sectionWidth;
+      } else if (scrollLeft >= scrollWidth - clientWidth) {
+        carousel.scrollLeft = sectionWidth;
+      }
+    };
 
-      carousel.addEventListener('scroll', handleInfiniteScroll);
-    }
+    carousel.addEventListener('scroll', updateCardTransforms);
+    carousel.addEventListener('scroll', handleInfiniteScroll);
+    updateCardTransforms(); // Initial call
 
     return () => {
       if (carousel) {
         carousel.removeEventListener('scroll', updateCardTransforms);
+        carousel.removeEventListener('scroll', handleInfiniteScroll);
       }
     };
   }, []);

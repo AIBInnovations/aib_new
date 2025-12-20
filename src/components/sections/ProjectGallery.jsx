@@ -17,11 +17,20 @@ const ProjectGallery = () => {
     const track = trackRef.current;
     if (!track) return;
 
+    let isMounted = true;
+
     const updateCardTransforms = () => {
+      if (!isMounted || !track) return;
+
       const cards = track.querySelectorAll('.project-card');
+      if (!cards.length) return;
+
       const containerCenter = window.innerWidth / 2;
 
       cards.forEach((card) => {
+        // Check if card is still connected to DOM
+        if (!card || !card.isConnected) return;
+
         const rect = card.getBoundingClientRect();
         const cardCenter = rect.left + rect.width / 2;
 
@@ -52,7 +61,10 @@ const ProjectGallery = () => {
     // Update continuously for smooth effect
     const intervalId = setInterval(updateCardTransforms, 50);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (

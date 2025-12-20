@@ -311,16 +311,19 @@ const TimelineWebGL = () => {
   // Handle scroll for parallax and sticky effect
   useEffect(() => {
     let ticking = false;
+    let isMounted = true;
 
     const updateParticlePositions = () => {
+      if (!isMounted) return;
+
       const timelineCircles = document.querySelectorAll('.timeline-circle');
       const particleSystems = particleSystemsRef.current;
       const camera = cameraRef.current;
 
-      if (!camera) return;
+      if (!camera || !timelineCircles.length || !particleSystems.length) return;
 
       timelineCircles.forEach((circle, index) => {
-        if (!particleSystems[index]) return;
+        if (!particleSystems[index] || !circle || !circle.isConnected) return;
 
         const rect = circle.getBoundingClientRect();
 
@@ -365,7 +368,7 @@ const TimelineWebGL = () => {
     };
 
     const handleScroll = () => {
-      if (!ticking) {
+      if (!ticking && isMounted) {
         requestAnimationFrame(updateParticlePositions);
         ticking = true;
       }
@@ -378,6 +381,8 @@ const TimelineWebGL = () => {
     requestAnimationFrame(updateParticlePositions);
 
     return () => {
+      isMounted = false;
+      ticking = false;
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };

@@ -41,7 +41,22 @@ const ServicesListSection = () => {
       });
     }, section);
 
-    return () => ctx.revert();
+    return () => {
+      // Properly revert all GSAP animations and ScrollTriggers in this context
+      try {
+        if (ctx) {
+          ctx.revert() // This will unpin and cleanup all animations
+        }
+        // Also manually kill any remaining ScrollTriggers for this section
+        ScrollTrigger.getAll()?.forEach(trigger => {
+          if (trigger.vars?.trigger && section?.contains(trigger.vars.trigger)) {
+            trigger.kill(true) // Kill and revert
+          }
+        })
+      } catch (e) {
+        // Silently handle cleanup errors
+      }
+    };
   }, []);
 
   const services = [

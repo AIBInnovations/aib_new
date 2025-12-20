@@ -16,10 +16,14 @@ const StatisticsSection = () => {
     const left = leftRef.current;
     const right = rightRef.current;
     const counterWrapper = counterRef.current;
+
+    if (!section || !left || !right || !counterWrapper) return;
+
     const counterItems = counterWrapper.querySelectorAll('.counter-item');
+    if (!counterItems.length) return;
 
     // Left div animation
-    gsap.fromTo(
+    const leftAnim = gsap.fromTo(
       left,
       {
         x: -100,
@@ -40,7 +44,7 @@ const StatisticsSection = () => {
     );
 
     // Right div animation
-    gsap.fromTo(
+    const rightAnim = gsap.fromTo(
       right,
       {
         x: 100,
@@ -95,7 +99,30 @@ const StatisticsSection = () => {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      // Kill specific ScrollTriggers and animations created by this component
+      // Use kill(true) to revert DOM changes (unpin elements)
+      try {
+        if (leftAnim?.scrollTrigger) {
+          leftAnim.scrollTrigger.kill(true)
+        }
+        if (leftAnim) {
+          leftAnim.kill()
+        }
+        if (rightAnim?.scrollTrigger) {
+          rightAnim.scrollTrigger.kill(true)
+        }
+        if (rightAnim) {
+          rightAnim.kill()
+        }
+        if (tl?.scrollTrigger) {
+          tl.scrollTrigger.kill(true) // Important: revert pinning before unmount
+        }
+        if (tl) {
+          tl.kill()
+        }
+      } catch (e) {
+        // Silently handle cleanup errors
+      }
     };
   }, []);
 
