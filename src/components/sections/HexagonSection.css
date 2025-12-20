@@ -195,7 +195,25 @@
 
 
 
-@media (max-width: 767px) {
+@media (min-width: 500px) and (max-width: 767px) {
+  .hexagon-section {
+    height: 80vh; /* Match container height to eliminate black gap */
+  }
+
+  .hexagon-container {
+    height: 80vh;
+  }
+
+  .hex-grid-container {
+    max-height: 420px; /* smaller visible window = centered highlight */
+  }
+
+  .hex-grid {
+    padding-top: 120px !important; /* push grid DOWN so highlight sits center */
+  }
+}
+
+@media (max-width: 499px) {
   .hex-grid-container {
     max-height: 420px; /* smaller visible window = centered highlight */
   }
