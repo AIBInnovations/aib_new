@@ -5,6 +5,14 @@ import './Header.css';
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const toggleMenu = () => {
+    setIsHovered(!isHovered);
+  };
+
+  const closeMenu = () => {
+    setIsHovered(false);
+  };
+
   return (
     <header className="header">
       <div
@@ -16,7 +24,7 @@ const Header = () => {
           <Link to="/" className="logo">
             <h2>AIB INNOVATIONS</h2>
           </Link>
-          <div className="menu-dots">
+          <div className="menu-dots" onClick={toggleMenu}>
             <span className="dot"></span>
             <span className="dot"></span>
             <span className="dot"></span>
@@ -25,11 +33,11 @@ const Header = () => {
         </div>
 
         <nav className="nav-menu">
-          <Link to="/">HOME</Link>
-          <Link to="/services">SERVICES</Link>
-          <Link to="/about">ABOUT</Link>
-          <Link to="/portfolio">PORTFOLIO</Link>
-          <Link to="/contact">CONTACT</Link>
+          <Link to="/" onClick={closeMenu}>HOME</Link>
+          <Link to="/services" onClick={closeMenu}>SERVICES</Link>
+          <Link to="/about" onClick={closeMenu}>ABOUT</Link>
+          <Link to="/portfolio" onClick={closeMenu}>PORTFOLIO</Link>
+          <Link to="/contact" onClick={closeMenu}>CONTACT</Link>
         </nav>
       </div>
     </header>
