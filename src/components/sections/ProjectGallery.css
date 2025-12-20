@@ -1,144 +1,84 @@
 .project-gallery {
-  min-height: 60vh;
   background: #000;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 6rem 0;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .gallery-heading {
   font-family: 'Clash Display Variable', sans-serif;
-  font-weight: 700;
   font-size: clamp(40px, 5vw, 80px);
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin: 0 0 4rem 0;
+  margin-bottom: 4rem;
   text-align: center;
 }
 
 .carousel-container {
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: visible;
-  position: relative;
-  perspective: 1500px;
-  perspective-origin: center center;
-  padding: 2rem 0;
+  overflow: hidden;
+  perspective: 1400px;
 }
 
 .carousel-track {
   display: flex;
   gap: 1.5rem;
-  animation: scroll 30s linear infinite;
   width: fit-content;
   transform-style: preserve-3d;
-}
-
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  will-change: transform;
 }
 
 .project-card {
   width: 320px;
-  min-width: 280px;
-  max-width: 400px;
   height: 450px;
   background: #1a1a1a;
-  border-radius: 12px;
+  border-radius: 14px;
   flex-shrink: 0;
-  overflow: hidden;
-  position: relative;
   transform-style: preserve-3d;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  will-change: transform;
-  backface-visibility: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
 }
 
 .card-content {
-  width: 100%;
   height: 100%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-  position: relative;
+  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
 }
 
 .card-content h3 {
-  font-family: 'Clash Display Variable', sans-serif;
-  font-weight: 600;
-  font-size: 28px;
-  margin: 0 0 0.5rem 0;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 26px;
+  margin: 0;
 }
 
 .card-content p {
-  font-family: 'Space Mono', monospace;
-  font-weight: 400;
   font-size: 14px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  opacity: .7;
 }
 
-/* Responsive styles */
+/* ================= MOBILE CAROUSEL ================= */
+
 @media (max-width: 768px) {
-  .project-gallery {
-    padding: 3rem 0;
+  .carousel-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 
   .carousel-track {
-    gap: 1.5rem;
+    animation: none;
+    transform: none !important;
   }
 
   .project-card {
-    width: 250px;
-    min-width: 200px;
-    max-width: 300px;
-    height: 350px;
-  }
-
-  .card-content h3 {
-    font-size: 24px;
-  }
-
-  .card-content p {
-    font-size: 12px;
+    scroll-snap-align: center;
+    width: 240px;
+    height: 320px;
   }
 }
 
 @media (max-width: 480px) {
-  .carousel-track {
-    gap: 1rem;
-  }
-
   .project-card {
     width: 200px;
-    min-width: 150px;
-    max-width: 200px;
-    height: 250px;
-  }
-
-  .card-content {
-    padding: 1rem;
-  }
-
-  .card-content h3 {
-    font-size: 16px;
+    height: 260px;
   }
 }
