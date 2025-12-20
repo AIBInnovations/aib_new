@@ -373,3 +373,109 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+
+@media (max-width: 600px) {
+  /* SECTION PADDING */
+  .contact-hero {
+    padding: 100px 16px 60px;
+  }
+
+  /* TITLE & TEXT */
+  .contact-hero-title {
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+
+  .contact-hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* MAIN CONTAINER */
+  .booking-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  /* INFO CARD */
+  .booking-info {
+    padding: 24px;
+  }
+
+  .meeting-title {
+    font-size: 22px;
+  }
+
+  .meeting-description,
+  .meeting-points li {
+    font-size: 15px;
+  }
+
+  /* CALENDAR CARD */
+  .booking-calendar {
+    padding: 24px;
+  }
+
+  /* STACK CALENDAR + TIME */
+  .calendar-and-time {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* CALENDAR DAYS */
+  .calendar-weekdays {
+    gap: 6px;
+  }
+
+  .calendar-days {
+    gap: 6px;
+  }
+
+  .calendar-day {
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  /* TIME HEADER */
+  .time-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .selected-date {
+    font-size: 16px;
+  }
+
+  /* TIME TOGGLE */
+  .time-toggle {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+
+  .toggle-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* TIME SLOTS */
+  .time-slots {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .time-slot {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  /* CTA BUTTON */
+  .confirm-btn {
+    padding: 16px;
+    font-size: 15px;
+  }
+}
