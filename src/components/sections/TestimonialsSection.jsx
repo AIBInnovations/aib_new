@@ -86,8 +86,11 @@ const TestimonialsSection = ({
     const angleStep = (2 * Math.PI) / totalItems;
     const position = (index - activeIndex + totalItems) % totalItems;
 
-    // Calculate angle (0 is center/right, rotate counter-clockwise)
-    const angle = position * angleStep;
+    // Calculate angle
+    // Desktop: 0° is right (highlighted position)
+    // Mobile/Tablet: 90° is bottom (highlighted position)
+    const rotationOffset = isMobile ? (Math.PI / 2) : 0;
+    const angle = position * angleStep + rotationOffset;
 
     // Radius of the circle
     const radius = 220;
