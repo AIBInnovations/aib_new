@@ -39,9 +39,10 @@
   object-position: -100% center;
   z-index: 0;
   transition: transform 0.6s ease, width 0.6s ease;
+  pointer-events: none;
 }
 
-.hero:hover .hero-video {
+.hero-container:hover ~ .hero-video {
   transform: scaleX(1.2);
   width: 120%;
 }
@@ -62,7 +63,7 @@
   transition: flex-direction 0.6s ease, max-width 0.6s ease, gap 0.6s ease;
 }
 
-.hero:hover .hero-content {
+.hero-container:hover .hero-content {
   flex-direction: row;
   max-width: 100%;
   gap: 3rem;
@@ -107,12 +108,12 @@
   }
 
   /* Disable hover effects on mobile */
-  .hero:hover .hero-video {
+  .hero-container:hover ~ .hero-video {
     transform: none;
     width: 100%;
   }
 
-  .hero:hover .hero-content {
+  .hero-container:hover .hero-content {
     flex-direction: column;
     max-width: 600px;
     gap: 1.5rem;
