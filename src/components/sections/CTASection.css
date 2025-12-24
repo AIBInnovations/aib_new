@@ -16,7 +16,7 @@
 /* Curve image at top */
 .cta-curve {
   position: absolute;
-  top: 0;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
