@@ -91,8 +91,8 @@ const Footer = () => {
 
             <div className="footer-chat">
               <h4 className="chat-heading">Let's chat</h4>
-              <a href="mailto:INFO@AIBINNOVATIONS.CO" className="chat-email">
-                INFO@AIBINNOVATIONS.CO
+              <a href="mailto:INFO@AIBTECHNOVATION.CO" className="chat-email">
+                INFO@AIBTECHNOVATION.CO
               </a>
             </div>
           </div>
@@ -103,13 +103,13 @@ const Footer = () => {
 
         {/* Large Company Name */}
         <div className="footer-company-name">
-          <h1 className="company-name-text">AIB INNOVATIONS</h1>
+          <h1 className="company-name-text">AIB TECHNOVATION</h1>
         </div>
 
         {/* Bottom - Copyright */}
         <div className="footer-bottom">
           <p className="footer-copyright">
-            Copyright © AIB Innovations, Inc 2025
+            Copyright © AIB Technovation, Inc 2025
           </p>
           <div className="footer-links">
             <a href="#terms" className="footer-bottom-link">Terms Of Service</a>

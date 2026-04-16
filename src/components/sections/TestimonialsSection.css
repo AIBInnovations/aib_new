@@ -185,10 +185,23 @@
   opacity: 0.9;
 }
 
-.avatar-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.avatar-icon {
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.85);
+  z-index: 2;
+}
+
+.avatar-button {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.avatar-button.active {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* Name + Role */
@@ -467,8 +480,13 @@
 
 @media (max-width: 768px) {
   .testimonials-section {
-    padding: 45px 4%;
+    padding: 70px 4% 60px;
     overflow-x: hidden;
+  }
+
+  .testimonials-section::before,
+  .testimonials-section::after {
+    display: none;
   }
 
   .testimonials-heading {
@@ -657,32 +675,81 @@
 }
 
 @media (max-width: 480px) {
+  /* Same circular layout as desktop — just scaled down to fit a phone. */
   .testimonials-section {
-    padding: 30px 3%;
-    min-height: 70vh;
+    padding: 50px 4% 40px;
+    min-height: 0;
+    height: auto;
     overflow-x: hidden;
+    overflow-y: hidden;
+    display: block;
+  }
+
+  .testimonials-section::before,
+  .testimonials-section::after {
+    display: none;
   }
 
   .testimonials-heading {
-    font-size: 24px;
-    margin-bottom: 25px;
+    font-size: 26px;
+    margin-bottom: 16px;
     letter-spacing: 1px;
   }
 
+  /* Switch from grid to a centered flex column so every child
+     (avatars wrapper, quote block) lines up on the vertical axis. */
   .testimonials-content {
-    gap: 25px;
-    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
   }
 
   .testimonials-avatars {
     width: 280px;
     height: 280px;
-    max-width: 90vw;
-    margin: -140px auto 0 auto;
+    max-width: 92vw;
+    margin: 0 auto !important;
+    justify-content: center;
+    overflow: visible;
+    position: relative;
   }
 
+  /* Force the orbit's pivot to the container center — overrides the
+     desktop rule that pins it to the left edge. */
   .avatars-circle {
-    transform: scale(0.6);
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+  }
+
+  /* Fade out the top half of the orbit so the focus lands on the
+     active avatar sitting at the bottom-center of the circle. */
+  .testimonials-avatars::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    right: -10%;
+    height: 70%;
+    background: linear-gradient(
+      to bottom,
+      #121212 0%,
+      #121212 35%,
+      rgba(18, 18, 18, 0.7) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  /* Scale the whole circular orbit down; translate(-50%, -50%) makes
+     the orbit's own center align with the container center. */
+  .avatars-circle {
+    transform: translate(-50%, -50%) scale(0.55) !important;
+    transform-origin: center center;
   }
 
   .gradint-image {
@@ -692,150 +759,143 @@
   }
 
   .avatar-button {
-    width: 48px;
-    height: 48px;
+    width: 54px;
+    height: 54px;
   }
 
   .avatar-button.active {
-    width: 68px;
-    height: 68px;
+    width: 76px;
+    height: 76px;
   }
 
+  /* Explicit wrapper width = active button width so long name/role
+     text can't stretch the wrapper and push the button to the right.
+     With width: 76px and margin-left: -38px (half of width), the
+     wrapper sits symmetrically around the circular position point. */
   .avatar-wrapper-circular {
-    margin-left: -34px;
-    margin-top: -34px;
+    flex-direction: column;
+    align-items: center;
+    width: 76px;
+    margin-left: -38px;
+    margin-top: -38px;
   }
 
   .avatar-info {
     margin-left: 0;
-    margin-top: 10px;
-    max-width: 100%;
+    margin-top: 12px;
+    max-width: none;
+    width: max-content;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .avatar-info.active .avatar-name {
-    font-size: 14px;
+    font-size: 17px;
   }
 
   .avatar-info.active .avatar-role {
-    font-size: 9px;
-    letter-spacing: 0.7px;
+    font-size: 11px;
+    letter-spacing: 1px;
   }
 
   .testimonials-quotes {
-    min-height: 250px;
+    min-height: 0;
     width: 100%;
   }
 
   .quotes-circle {
-    height: 250px;
+    position: relative;
+    height: auto;
+    min-height: 150px;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .quote-text {
+    position: static;
     text-align: center;
-    left: 50%;
-    transform: translateX(-50%) !important;
     max-width: 100%;
-    padding: 0 5%;
-    margin-top: -40px;
-    box-sizing: border-box;
+    padding: 0 4%;
+    margin: 0;
+    transform: none !important;
   }
 
   .quote-text.active {
-    font-size: 14px;
-    line-height: 1.7;
-    letter-spacing: 0.4px;
+    position: static;
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: 0.3px;
+    filter: none;
   }
 
+  /* Hide stacked non-active quotes so they don't reserve layout height. */
   .quote-text:not(.active) {
-    font-size: 11px;
+    display: none !important;
   }
 }
 
 @media (max-width: 380px) {
   .testimonials-section {
-    padding: 25px 2%;
-    overflow-x: hidden;
+    padding: 40px 3% 32px;
   }
 
   .testimonials-heading {
     font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .testimonials-content {
-    gap: 20px;
-    overflow-x: hidden;
+    margin-bottom: 12px;
   }
 
   .testimonials-avatars {
-    width: 240px;
-    height: 240px;
-    max-width: 88vw;
-    margin: -120px auto 0 auto;
+    width: 260px;
+    height: 260px;
+    max-width: 90vw;
+  }
+
+  .testimonials-avatars::after {
+    height: 68%;
   }
 
   .avatars-circle {
-    transform: scale(0.55);
+    transform: translate(-50%, -50%) scale(0.5) !important;
   }
 
   .gradint-image {
     width: 140px;
     height: 140px;
-    transform: translate(-50%, -50%) rotate(90deg);
   }
 
   .avatar-button {
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
   }
 
   .avatar-button.active {
-    width: 62px;
-    height: 62px;
+    width: 70px;
+    height: 70px;
   }
 
   .avatar-wrapper-circular {
-    margin-left: -31px;
-    margin-top: -31px;
-  }
-
-  .avatar-info {
-    margin-left: 0;
-    margin-top: 8px;
-    max-width: 100%;
+    width: 70px;
+    margin-left: -35px;
+    margin-top: -35px;
   }
 
   .avatar-info.active .avatar-name {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .avatar-info.active .avatar-role {
-    font-size: 8px;
-    letter-spacing: 0.5px;
-  }
-
-  .testimonials-quotes {
-    min-height: 220px;
-    width: 100%;
+    font-size: 10px;
   }
 
   .quotes-circle {
-    height: 220px;
-    width: 100%;
-  }
-
-  .quote-text {
-    box-sizing: border-box;
+    min-height: 140px;
   }
 
   .quote-text.active {
-    font-size: 13px;
-    line-height: 1.7;
-    letter-spacing: 0.3px;
-  }
-
-  .quote-text:not(.active) {
-    font-size: 10px;
+    font-size: 14px;
+    line-height: 1.65;
   }
 }

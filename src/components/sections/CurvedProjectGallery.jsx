@@ -1,55 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './CurvedProjectGallery.css';
 
-// Default sample project data
+// Default sample project data — real AIB client work
 const defaultPanels = [
   {
     id: 1,
-    title: 'AI-Powered Analytics Dashboard',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-    href: '#project-1'
+    title: 'Roccia — Luxury Interiors Web Experience',
+    image: '/web/roccia.webp',
+    href: 'https://roccia-web.vercel.app/'
   },
   {
     id: 2,
-    title: 'Smart Home Automation System',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-    href: '#project-2'
+    title: 'Nine Hawks — Aviation Brand Platform',
+    image: '/web/ninehawks.webp',
+    href: 'https://ninehauk.vercel.app/'
   },
   {
     id: 3,
-    title: 'E-commerce Platform Redesign',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-    href: '#project-3'
+    title: 'Fayon Kids — E-commerce Storefront',
+    image: '/shopify/fayon.webp',
+    href: 'https://www.fayonkids.com/'
   },
   {
     id: 4,
-    title: 'Mobile Banking Application',
-    image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80',
-    href: '#project-4'
+    title: 'Closet — Fashion Web Application',
+    image: '/web/closet.webp',
+    href: 'https://closet-web-jade.vercel.app/'
   },
   {
     id: 5,
-    title: 'Healthcare Management Portal',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-    href: '#project-5'
+    title: 'Evara — Interactive Brand Website',
+    image: '/web/evara.webp',
+    href: 'https://evara-website.vercel.app/'
   },
   {
     id: 6,
-    title: 'Blockchain Trading Platform',
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80',
-    href: '#project-6'
+    title: 'Miloe — D2C Shopify Experience',
+    image: '/shopify/MILOE.webp',
+    href: 'https://miloe.in/'
   },
   {
     id: 7,
-    title: 'Cloud Infrastructure Solution',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
-    href: '#project-7'
+    title: 'GradNext — Education Platform',
+    image: '/web/GradNext.webp',
+    href: 'https://gradnext-sample.vercel.app/'
   },
   {
     id: 8,
-    title: 'AR/VR Experience Platform',
-    image: 'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&q=80',
-    href: '#project-8'
+    title: 'Motivata — Wellness Web Experience',
+    image: '/web/motiveta.webp',
+    href: 'https://motivata.in/'
   }
 ];
 

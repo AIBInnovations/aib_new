@@ -1,7 +1,7 @@
 import React from 'react';
 import AboutHero from '../components/sections/AboutHero';
 import ValuesSection from '../components/sections/ValuesSection';
-import TeamSection from '../components/sections/TeamSection';
+import AboutTeamSection from '../components/sections/AboutTeamSection';
 import TechBasedSection from '../components/sections/TechBasedSection';
 import TimelineSection from '../components/sections/TimelineSection';
 
@@ -10,7 +10,7 @@ const AboutPage = () => {
     <>
       <AboutHero />
       <ValuesSection />
-      <TeamSection />
+      <AboutTeamSection />
       <TechBasedSection />
       <TimelineSection />
     </>

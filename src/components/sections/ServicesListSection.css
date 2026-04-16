@@ -173,34 +173,104 @@
 /* Responsive Design - Mobile */
 @media (max-width: 768px) {
   .services-list-section {
+    padding: 60px 5%;
+  }
+
+  .card {
+    padding: 32px 28px;
+    margin-bottom: 24px;
+    border-radius: 18px;
+  }
+
+  .service-header {
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .service-number {
+    font-size: 36px;
+    min-width: 56px;
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  .service-title {
+    font-size: clamp(22px, 6vw, 32px);
+    line-height: 1.15;
+  }
+
+  .service-content-wrapper {
+    margin-top: 28px;
+  }
+
+  .service-body {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .service-left {
+    gap: 18px;
+  }
+
+  .service-tags {
+    gap: 10px;
+  }
+
+  .service-tag {
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+
+  .service-description {
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  .service-right {
+    justify-content: flex-start;
+  }
+
+  .service-image {
+    width: 100%;
+    max-width: none;
+    height: 220px;
+    border-radius: 14px;
+  }
+}
+
+/* Responsive Design - Small Mobile */
+@media (max-width: 480px) {
+  .services-list-section {
     padding: 50px 4%;
   }
 
   .card {
-    padding: 25px 25px;
+    padding: 26px 22px;
     margin-bottom: 20px;
     border-radius: 16px;
   }
 
   .service-header {
-    gap: 20px;
+    gap: 16px;
   }
 
   .service-number {
-    font-size: 28px;
-    min-width: 45px;
+    font-size: 30px;
+    min-width: 44px;
   }
 
   .service-title {
-    font-size: clamp(18px, 5vw, 26px);
+    font-size: clamp(20px, 6vw, 26px);
+    line-height: 1.15;
   }
 
   .service-content-wrapper {
-    margin-top: 20px;
+    margin-top: 22px;
   }
 
   .service-left {
-    gap: 15px;
+    gap: 16px;
   }
 
   .service-tags {
@@ -219,54 +289,6 @@
 
   .service-image {
     height: 180px;
-  }
-}
-
-/* Responsive Design - Small Mobile */
-@media (max-width: 480px) {
-  .services-list-section {
-    padding: 40px 3%;
-  }
-
-  .card {
-    padding: 20px 18px;
-    margin-bottom: 15px;
-    border-radius: 14px;
-  }
-
-  .service-header {
-    gap: 15px;
-  }
-
-  .service-number {
-    font-size: 22px;
-    min-width: 35px;
-  }
-
-  .service-title {
-    font-size: clamp(16px, 4.5vw, 20px);
-  }
-
-  .service-content-wrapper {
-    margin-top: 15px;
-  }
-
-  .service-tags {
-    gap: 6px;
-  }
-
-  .service-tag {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
-
-  .service-description {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .service-image {
-    height: 150px;
     border-radius: 12px;
   }
 }

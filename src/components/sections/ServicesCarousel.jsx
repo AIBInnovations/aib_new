@@ -1,26 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ServicesCarousel.css';
 
 const ServicesCarousel = () => {
+  const navigate = useNavigate();
   const [hoveredCard1, setHoveredCard1] = useState(null);
   const [hoveredCard2, setHoveredCard2] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  const handleViewAllProjects = () => {
+    navigate('/portfolio');
+  };
 
   const carouselItems1 = [
-    { id: 1, width: 350, imageUrl: 'https://via.placeholder.com/350x250/B8B8B8/B8B8B8' },
-    { id: 2, width: 420, imageUrl: 'https://via.placeholder.com/420x250/A8A8A8/A8A8A8' },
-    { id: 3, width: 300, imageUrl: 'https://via.placeholder.com/300x250/B8B8B8/B8B8B8' },
-    { id: 4, width: 380, imageUrl: 'https://via.placeholder.com/380x250/A8A8A8/A8A8A8' },
-    { id: 5, width: 330, imageUrl: 'https://via.placeholder.com/330x250/B8B8B8/B8B8B8' },
-    { id: 6, width: 360, imageUrl: 'https://via.placeholder.com/360x250/A8A8A8/A8A8A8' }
+    { id: 1, width: 350, imageUrl: '/web/roccia.webp' },
+    { id: 2, width: 420, imageUrl: '/web/tita.webp' },
+    { id: 3, width: 300, imageUrl: '/web/ninehawks.webp' },
+    { id: 4, width: 380, imageUrl: '/web/closet.webp' },
+    { id: 5, width: 330, imageUrl: '/web/jmc.webp' },
+    { id: 6, width: 360, imageUrl: '/web/nestinwoods.webp' }
   ];
 
   const carouselItems2 = [
-    { id: 7, width: 390, imageUrl: 'https://via.placeholder.com/390x250/B8B8B8/B8B8B8' },
-    { id: 8, width: 340, imageUrl: 'https://via.placeholder.com/340x250/A8A8A8/A8A8A8' },
-    { id: 9, width: 370, imageUrl: 'https://via.placeholder.com/370x250/B8B8B8/B8B8B8' },
-    { id: 10, width: 320, imageUrl: 'https://via.placeholder.com/320x250/A8A8A8/A8A8A8' },
-    { id: 11, width: 350, imageUrl: 'https://via.placeholder.com/350x250/B8B8B8/B8B8B8' },
-    { id: 12, width: 400, imageUrl: 'https://via.placeholder.com/400x250/A8A8A8/A8A8A8' }
+    { id: 7, width: 390, imageUrl: '/web/stone%20gallaxy.webp' },
+    { id: 8, width: 340, imageUrl: '/shopify/fayon.webp' },
+    { id: 9, width: 370, imageUrl: '/shopify/MILOE.webp' },
+    { id: 10, width: 320, imageUrl: '/web/evara.webp' },
+    { id: 11, width: 350, imageUrl: '/web/motiveta.webp' },
+    { id: 12, width: 400, imageUrl: '/web/GradNext.webp' }
   ];
 
   // Duplicate items for seamless loop
@@ -31,14 +46,21 @@ const ServicesCarousel = () => {
     <section className="services-carousel-section">
 
       <div className="carousel-header">
-        <button className="carousel-nav-btn left">
+        <button
+          className="carousel-nav-btn left"
+          onClick={handleViewAllProjects}
+          aria-label="View all projects"
+        >
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
             <line x1="45" y1="30" x2="15" y2="30" stroke="currentColor" strokeWidth="2"/>
             <polyline points="25,20 15,30 25,40" stroke="currentColor" strokeWidth="2" fill="none"/>
           </svg>
         </button>
         <h2 className="carousel-title">OUR SERVICES</h2>
-        <button className="carousel-nav-btn right">
+        <button
+          className="carousel-nav-btn right"
+          onClick={handleViewAllProjects}
+        >
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
             <circle cx="15" cy="15" r="14" stroke="currentColor" strokeWidth="2"/>
             <polyline points="12,9 18,15 12,21" stroke="currentColor" strokeWidth="2" fill="none"/>
@@ -48,22 +70,27 @@ const ServicesCarousel = () => {
       </div>
 
       <div className="carousel-container">
-        <div className={`carousel-track ${hoveredCard1 !== null ? 'paused' : ''}`}>
+        <div className={`carousel-track ${!isMobile && hoveredCard1 !== null ? 'paused' : ''}`}>
           {duplicatedItems1.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className={`carousel-card ${hoveredCard1 === index ? 'hovered' : ''}`}
-              style={{ width: `${item.width}px` }}
-              onMouseEnter={() => setHoveredCard1(index)}
-              onMouseLeave={() => setHoveredCard1(null)}
+              className={`carousel-card ${!isMobile && hoveredCard1 === index ? 'hovered' : ''}`}
+              style={{ width: isMobile ? '220px' : `${item.width}px` }}
+              onMouseEnter={() => !isMobile && setHoveredCard1(index)}
+              onMouseLeave={() => !isMobile && setHoveredCard1(null)}
             >
-              <div className="carousel-card-image" style={{ backgroundImage: `url(${item.imageUrl})` }}>
-                <div className="play-button">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="20" r="19" fill="white" stroke="white" strokeWidth="2"/>
-                    <path d="M16 12L28 20L16 28V12Z" fill="black"/>
-                  </svg>
-                </div>
+              <img
+                className="carousel-card-img"
+                src={item.imageUrl}
+                alt=""
+                loading="lazy"
+                draggable="false"
+              />
+              <div className="play-button">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="19" fill="white" stroke="white" strokeWidth="2"/>
+                  <path d="M16 12L28 20L16 28V12Z" fill="black"/>
+                </svg>
               </div>
             </div>
           ))}
@@ -71,22 +98,27 @@ const ServicesCarousel = () => {
       </div>
 
       <div className="carousel-container reverse">
-        <div className={`carousel-track reverse ${hoveredCard2 !== null ? 'paused' : ''}`}>
+        <div className={`carousel-track reverse ${!isMobile && hoveredCard2 !== null ? 'paused' : ''}`}>
           {duplicatedItems2.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className={`carousel-card ${hoveredCard2 === index ? 'hovered' : ''}`}
-              style={{ width: `${item.width}px` }}
-              onMouseEnter={() => setHoveredCard2(index)}
-              onMouseLeave={() => setHoveredCard2(null)}
+              className={`carousel-card ${!isMobile && hoveredCard2 === index ? 'hovered' : ''}`}
+              style={{ width: isMobile ? '220px' : `${item.width}px` }}
+              onMouseEnter={() => !isMobile && setHoveredCard2(index)}
+              onMouseLeave={() => !isMobile && setHoveredCard2(null)}
             >
-              <div className="carousel-card-image" style={{ backgroundImage: `url(${item.imageUrl})` }}>
-                <div className="play-button">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="20" r="19" fill="white" stroke="white" strokeWidth="2"/>
-                    <path d="M16 12L28 20L16 28V12Z" fill="black"/>
-                  </svg>
-                </div>
+              <img
+                className="carousel-card-img"
+                src={item.imageUrl}
+                alt=""
+                loading="lazy"
+                draggable="false"
+              />
+              <div className="play-button">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="19" fill="white" stroke="white" strokeWidth="2"/>
+                  <path d="M16 12L28 20L16 28V12Z" fill="black"/>
+                </svg>
               </div>
             </div>
           ))}

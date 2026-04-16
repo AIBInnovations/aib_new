@@ -202,4 +202,8 @@
   .faq-number {
     display: none;
   }
+
+  .faq-item.open .faq-answer-wrapper {
+    max-height: 350px;
+  }
 }

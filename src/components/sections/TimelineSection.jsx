@@ -6,7 +6,7 @@ const timelineEvents = [
     year: '2022',
     title: 'Company\nFounded',
     description:
-      'AIB Innovations was established with a\nmission to bridge the gap between\nadvanced software and hardware solutions\nfor emerging tech challenges',
+      'AIB Technovation was established with a\nmission to bridge the gap between\nadvanced software and hardware solutions\nfor emerging tech challenges',
   },
   {
     year: '2023',

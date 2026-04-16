@@ -6,7 +6,7 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "WHAT SERVICES DOES AIB INNOVATIONS OFFER?",
+      question: "WHAT SERVICES DOES AIB TECHNOVATION OFFER?",
       answer: "We specialize in AI-powered solutions, custom software development, web and mobile applications, cloud solutions, and digital transformation consulting. Our team leverages cutting-edge technologies including machine learning, natural language processing, and computer vision to deliver innovative solutions tailored to your business needs."
     },
     {

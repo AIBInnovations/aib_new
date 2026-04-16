@@ -113,12 +113,15 @@
 }
 
 .map-placeholder iframe {
-  filter: grayscale(0.3) brightness(0.9);
-  transition: filter 0.3s ease;
+  /* Invert + hue-rotate flips the light Google Maps tiles into a dark
+     theme that matches the rest of the site UI. Desaturation tones
+     down the remaining color noise. */
+  filter: invert(92%) hue-rotate(180deg) saturate(30%) brightness(90%) contrast(95%);
+  transition: filter 0.35s ease;
 }
 
 .map-placeholder:hover iframe {
-  filter: grayscale(0) brightness(1);
+  filter: invert(92%) hue-rotate(180deg) saturate(45%) brightness(100%) contrast(100%);
 }
 
 /* Add a subtle glow effect */
@@ -179,5 +182,51 @@
 
   .map-wrapper {
     height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-section {
+    padding: 50px 5%;
+  }
+
+  .map-container {
+    gap: 36px;
+  }
+
+  .map-title {
+    font-size: 24px;
+    padding-bottom: 18px;
+  }
+
+  .contact-details {
+    gap: 24px;
+  }
+
+  .contact-item {
+    gap: 16px;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-label {
+    font-size: 12px;
+  }
+
+  .contact-value {
+    font-size: 13px;
+  }
+
+  .map-wrapper {
+    height: 280px;
+    border-radius: 12px;
   }
 }

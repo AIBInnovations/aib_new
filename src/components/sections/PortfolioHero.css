@@ -44,8 +44,14 @@
   position: absolute;
   width: 20%;
   height: 30%;
-  background: #4a4a4a;
+  background-color: #4a4a4a;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  overflow: hidden;
   z-index: 0;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 .bg-square:nth-child(1) {
@@ -110,16 +116,38 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .portfolio-hero {
-    padding: 6rem 2rem;
+    padding: 6rem 1.5rem;
   }
 
   .portfolio-hero-title {
-    font-size: 48px;
+    font-size: 44px;
+  }
+
+  .bg-square {
+    width: 30%;
+    height: 22%;
+    border-radius: 6px;
+  }
+
+  /* Show only 3 of the 5 decorative columns to reduce visual noise */
+  .portfolio-bg-squares .bg-square:nth-child(2),
+  .portfolio-bg-squares .bg-square:nth-child(4) {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
+  .portfolio-hero {
+    padding: 5rem 1rem;
+  }
+
   .portfolio-hero-title {
-    font-size: 36px;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+  }
+
+  .bg-square {
+    width: 36%;
+    height: 18%;
   }
 }

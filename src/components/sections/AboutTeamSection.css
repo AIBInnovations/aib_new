@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+.about-team-section {
+  background: #0f0f0f;
+  color: #fff;
+  padding: 120px 0;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+.about-team-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 5%;
+}
+
+.about-team-title {
+  font-weight: 700;
+  font-size: clamp(44px, 6vw, 80px);
+  letter-spacing: 0.02em;
+  margin: 0 0 28px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1;
+}
+
+.about-team-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(12px, 1vw, 15px);
+  letter-spacing: 0.18em;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* ── Stage ────────────────────────────────────────────── */
+.about-team-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  aspect-ratio: 1920 / 700;
+  perspective: 1800px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+}
+
+/* Disable transitions briefly when we silently re-anchor the strip */
+.about-team-stage.no-transition .at-card {
+  transition: none !important;
+}
+
+.at-card {
+  position: absolute;
+  border-radius: 20px;
+  background-color: #d9d9d9;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: width, height, top, left, transform;
+  transition:
+    width 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    height 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    top 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    left 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    transform 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    box-shadow 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ── Slots ────────────────────────────────────────────── */
+
+/* Slot 1 — far left (outer tilted, shorter than before) */
+.at-slot-1 {
+  width: 19.79%;
+  height: 78%;
+  top: 12%;
+  left: -5.52%;
+  transform: rotateY(38deg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* Slot 2 — left (inward tilt) */
+.at-slot-2 {
+  width: 19.97%;
+  height: 62.36%;
+  top: 19.29%;
+  left: 16.30%;
+  transform: rotateY(18deg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+/* Slot 3 — center featured (flat) */
+.at-slot-3 {
+  width: 22.66%;
+  height: 65.86%;
+  top: 18.14%;
+  left: 38.23%;
+  transform: rotateY(0deg);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  z-index: 3;
+}
+
+/* Slot 4 — right (inward tilt mirror) */
+.at-slot-4 {
+  width: 19.77%;
+  height: 62.21%;
+  top: 20.07%;
+  left: 62.92%;
+  transform: rotateY(-18deg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+/* Slot 5 — far right (outer tilted, shorter than before) */
+.at-slot-5 {
+  width: 19.79%;
+  height: 78%;
+  top: 12%;
+  left: 84.74%;
+  transform: rotateY(-38deg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* ── Off-screen buffers (for infinite carousel) ───────── */
+/* No opacity fade — cards simply slide past the clipped
+   section edges. The parent section has overflow:hidden,
+   so these positions are visually out of view. */
+.at-hidden {
+  pointer-events: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.at-hidden-left {
+  width: 19.79%;
+  height: 78%;
+  top: 12%;
+  left: -40%;
+  transform: rotateY(55deg);
+}
+
+.at-hidden-right {
+  width: 19.79%;
+  height: 78%;
+  top: 12%;
+  left: 120%;
+  transform: rotateY(-55deg);
+}
+
+/* ── Testimonial ──────────────────────────────────────── */
+.about-team-testimonial {
+  max-width: 900px;
+  margin: 80px auto 0;
+  padding: 0 5%;
+  text-align: center;
+}
+
+/* Reserve enough vertical space so varying quote lengths
+   don't push the author / controls up and down. */
+.at-quote {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(14px, 1.3vw, 18px);
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 48px;
+  font-style: italic;
+  min-height: 7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.at-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.at-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.85);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+.at-author-info {
+  text-align: left;
+}
+
+.at-author-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 2px;
+  color: #fff;
+}
+
+.at-author-role {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.at-author-linkedin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #0a66c2;
+  transition: background 0.25s ease;
+}
+
+.at-author-linkedin:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.at-linkedin-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Controls ─────────────────────────────────────────── */
+.at-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.at-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.at-nav:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.at-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.at-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.at-dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.at-dot.active {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .about-team-section {
+    padding: 90px 0;
+  }
+
+  .about-team-stage {
+    aspect-ratio: 1024 / 520;
+  }
+
+  .at-slot-1 {
+    left: -7%;
+    transform: rotateY(32deg);
+  }
+  .at-slot-2 {
+    transform: rotateY(15deg);
+  }
+  .at-slot-4 {
+    transform: rotateY(-15deg);
+  }
+  .at-slot-5 {
+    left: 87%;
+    transform: rotateY(-32deg);
+  }
+
+  .at-quote {
+    min-height: 8em;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-team-section {
+    padding: 70px 0;
+  }
+
+  .about-team-header {
+    margin-bottom: 50px;
+  }
+
+  .about-team-stage {
+    aspect-ratio: 3 / 4;
+    max-width: min(360px, 85vw);
+    perspective: none;
+  }
+
+  .at-slot-1,
+  .at-slot-2,
+  .at-slot-4,
+  .at-slot-5,
+  .at-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .at-slot-3 {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+  .about-team-testimonial {
+    margin-top: 40px;
+  }
+
+  .at-quote {
+    letter-spacing: 0.06em;
+    min-height: 8em;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-team-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .about-team-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .about-team-stage {
+    max-width: min(260px, 80vw);
+  }
+
+  .at-quote {
+    min-height: 9em;
+    font-size: 12px;
+    margin-bottom: 28px;
+  }
+
+  .at-controls {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .at-nav {
+    width: 34px;
+    height: 34px;
+  }
+
+  .at-author-name {
+    font-size: 14px;
+  }
+
+  .at-author-role {
+    font-size: 11px;
+  }
+}

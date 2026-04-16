@@ -8,19 +8,19 @@ const ValuesSection = () => {
   const values = [
     {
       title: 'Innovation First',
-      description: 'Lorem Ipsum Dolor Sit Amet Consectetur.'
+      description: 'We lead with curiosity and bold ideas, turning emerging technology into real-world advantage for the brands we partner with.'
     },
     {
       title: 'Client Partnership',
-      description: 'Lorem Ipsum Dolor Sit Amet Consectetur.'
+      description: 'We treat every engagement as a long-term collaboration — your goals, challenges, and success are the center of our work.'
     },
     {
       title: 'Ethical Technology',
-      description: 'Lorem Ipsum Dolor Sit Amet Consectetur.'
+      description: 'We build responsibly. Privacy, accessibility, and social impact are built into every decision, not treated as afterthoughts.'
     },
     {
       title: 'Excellence In Execution',
-      description: 'Lorem Ipsum Dolor Sit Amet Consectetur.'
+      description: 'We ship what we promise — on time, at quality, and with the craftsmanship that defines a product built to last.'
     }
   ];
 
@@ -53,8 +53,8 @@ const ValuesSection = () => {
         <div className="values-header">
           <div className="values-header-line"></div>
           <p className="values-header-text">
-            Lorem Ipsum Dolor Sit Amet Consectetur. Pharotra<br />
-            Enim Suscipit Egestas Tristique In.
+            The principles that shape how we build, collaborate,<br />
+            and deliver for every client we work with.
           </p>
           <h2 className="values-title">Our Values</h2>
         </div>

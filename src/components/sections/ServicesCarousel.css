@@ -147,6 +147,25 @@
   background-color: #B8B8B8;
 }
 
+/* Image variant used by the mobile carousel — <img> renders more
+   reliably than CSS background-image on some mobile browsers. */
+.carousel-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: #B8B8B8;
+  user-select: none;
+  pointer-events: none;
+}
+
+.carousel-card {
+  overflow: hidden;
+}
+
 .play-button {
   position: absolute;
   top: 50%;
@@ -167,21 +186,149 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .services-carousel-section {
+    overflow-x: hidden;
+    padding: 50px 0 60px;
+  }
+
+  /* Clean mobile header: title on top, CTA button beneath, both centered. */
   .carousel-header {
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
-  }
-
-  .carousel-nav-btn.left {
-    order: -1;
+    align-items: center;
+    padding: 0 6%;
+    margin-bottom: 28px;
+    text-align: center;
   }
 
   .carousel-title {
-    font-size: clamp(30px, 8vw, 50px);
+    font-size: clamp(36px, 9vw, 56px);
+    line-height: 1;
+    order: 1;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .carousel-nav-btn.left {
+    display: none;
+  }
+
+  .carousel-nav-btn.right {
+    order: 2;
+    height: 48px;
+    padding: 10px 24px 10px 16px;
+    gap: 12px;
+  }
+
+  .carousel-nav-btn.right svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .btn-text {
+    font-size: 14px;
+  }
+
+  /* Tight gap between the two scrolling rows so they read as a pair
+     rather than two isolated strips with empty space between them. */
+  .carousel-container {
+    padding: 14px 0;
+  }
+
+  .carousel-container.reverse {
+    padding-top: 0;
+  }
+
+  /* Clip the wide animated track to the viewport and speed the loop up
+     so the motion is obvious on smaller screens. */
+  .carousel-container {
+    overflow: hidden;
+    padding: 30px 0;
+  }
+
+  /* Force the loop to run — use full shorthand + play-state override
+     so the desktop 40s inheritance and the .paused class can't stop it. */
+  .carousel-track {
+    gap: 18px;
+    animation: scrollLeft 22s linear infinite !important;
+    animation-play-state: running !important;
+    will-change: transform;
+    width: max-content;
+  }
+
+  .carousel-track.reverse {
+    animation: scrollRight 22s linear infinite !important;
+    animation-play-state: running !important;
+  }
+
+  .carousel-track.paused {
+    animation-play-state: running !important;
+  }
+
+  /* Card widths now come from JSX inline (isMobile ? 220px : width).
+     Only set height here. */
+  .carousel-card {
+    height: 160px;
+  }
+
+  .carousel-card.hovered {
+    transform: none;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-carousel-section {
+    padding: 40px 0 48px;
+  }
+
+  .carousel-header {
+    padding: 0 5%;
+    margin-bottom: 22px;
+    gap: 16px;
+  }
+
+  .carousel-title {
+    font-size: 32px;
+  }
+
+  .carousel-nav-btn.right {
+    height: 44px;
+    padding: 8px 20px 8px 14px;
+    gap: 10px;
+  }
+
+  .carousel-nav-btn.right svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn-text {
+    font-size: 13px;
+  }
+
+  .carousel-container {
+    padding: 10px 0;
   }
 
   .carousel-card {
-    height: 200px;
+    height: 140px;
+  }
+
+  .carousel-track {
+    gap: 14px;
+    animation: scrollLeft 18s linear infinite !important;
+    animation-play-state: running !important;
+    width: max-content;
+  }
+
+  .carousel-track.reverse {
+    animation: scrollRight 18s linear infinite !important;
+    animation-play-state: running !important;
+  }
+
+  .carousel-track.paused {
+    animation-play-state: running !important;
   }
 }

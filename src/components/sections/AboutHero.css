@@ -64,30 +64,31 @@
   top: 0;
   transform: translate(-120px, -180px);
   z-index: 0;
+  overflow: hidden;
 }
 
-.about-hero-image {
+.about-hero-video {
   width: 100%;
   height: 400px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  display: block;
   border-radius: 0;
-  background-color: #D2B48C;
+  background-color: #1a1a1a;
   animation: floatImage 6s ease-in-out infinite;
 }
 
 @keyframes floatImage {
   0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate(0, 0) rotate(0deg) scale(1.35);
   }
   25% {
-    transform: translate(10px, -10px) rotate(1deg);
+    transform: translate(10px, -10px) rotate(1deg) scale(1.35);
   }
   50% {
-    transform: translate(-5px, -15px) rotate(-0.5deg);
+    transform: translate(-5px, -15px) rotate(-0.5deg) scale(1.35);
   }
   75% {
-    transform: translate(8px, -5px) rotate(0.5deg);
+    transform: translate(8px, -5px) rotate(0.5deg) scale(1.35);
   }
 }
 
@@ -103,25 +104,82 @@
     margin-bottom: 60px;
   }
 
-  .about-hero-image {
-    height: 400px;
+  .about-image-section {
+    position: relative;
+    width: 100%;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 20px;
+  }
+
+  .about-hero-video {
+    height: 320px;
   }
 }
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: 80px 5%;
+    padding: 80px 5% 60px;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .about-hero-content {
+    transform: none;
   }
 
   .about-hero-title {
     font-size: clamp(32px, 7vw, 50px);
+    margin-bottom: 40px;
   }
 
   .about-hero-description {
-    font-size: 16px;
+    font-size: 15px;
+    text-align: center;
   }
 
-  .about-hero-image {
-    height: 350px;
+  .about-bottom-section {
+    gap: 32px;
+  }
+
+  .about-hero-video {
+    height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 70px 5% 40px;
+  }
+
+  .about-hero-title {
+    font-size: 32px;
+    margin-bottom: 32px;
+    line-height: 1.15;
+  }
+
+  .about-hero-description {
+    font-size: 14px;
+  }
+
+  .about-hero-video {
+    height: 200px;
+  }
+
+  /* Reduce the breathing scale so the overflow clip looks natural on small screens */
+  @keyframes floatImage {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1.15);
+    }
+    25% {
+      transform: translate(6px, -6px) rotate(0.6deg) scale(1.15);
+    }
+    50% {
+      transform: translate(-3px, -10px) rotate(-0.3deg) scale(1.15);
+    }
+    75% {
+      transform: translate(5px, -3px) rotate(0.3deg) scale(1.15);
+    }
   }
 }

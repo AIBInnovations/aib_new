@@ -36,7 +36,16 @@
   overflow: hidden;
   max-height: 62px;
   transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+/* Dark mode for light section backgrounds */
+.header.light-bg .header-glass {
+  background: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .header-glass.expanded {
@@ -73,6 +82,11 @@
   white-space: nowrap;
   display: flex;
   align-items: center;
+  transition: color 0.4s ease;
+}
+
+.header.light-bg .logo h2 {
+  color: #111;
 }
 
 .menu-dots {
@@ -101,11 +115,19 @@
   height: 7px;
   background: #fff;
   border-radius: 50%;
-  transition: background 0.3s;
+  transition: background 0.4s ease;
 }
 
 .header-glass:hover .dot {
   background: #e5e5e5;
+}
+
+.header.light-bg .dot {
+  background: #111;
+}
+
+.header.light-bg .header-glass:hover .dot {
+  background: #444;
 }
 
 .nav-menu {
@@ -133,7 +155,7 @@
   padding: 0;
   margin: 0;
   line-height: 130%;
-  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
   text-align: left;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -144,6 +166,10 @@
   width: fit-content;
 }
 
+.header.light-bg .nav-menu a {
+  color: #111;
+}
+
 .nav-menu a::after {
   content: '';
   position: absolute;
@@ -152,11 +178,15 @@
   width: 0;
   height: 1px;
   background: #fff;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, background 0.4s ease;
 }
 
 .nav-menu a:hover::after {
   width: 100%;
+}
+
+.header.light-bg .nav-menu a::after {
+  background: #111;
 }
 
 .header-glass.expanded .nav-menu a:nth-child(1) {
@@ -192,12 +222,21 @@
 @media (max-width: 768px) {
   .header {
     top: 1rem;
+    width: calc(100% - 2rem);
+    max-width: 420px;
   }
 
   .header-glass {
-    min-width: 280px;
-    padding: 1.25rem 1.5rem 0.875rem 1.5rem;
+    min-width: 0;
+    width: 100%;
+    padding: 1rem 1.25rem;
     align-items: center;
+    max-height: 52px;
+  }
+
+  .header-glass.expanded {
+    max-height: 600px;
+    padding-bottom: 1.5rem;
   }
 
   .header-glass .header-top {
@@ -221,7 +260,47 @@
     justify-content: center;
   }
 
+  .nav-menu {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
   .nav-menu a {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    top: 0.75rem;
+    width: calc(100% - 1.5rem);
+  }
+
+  .header-glass {
+    padding: 0.9rem 1rem;
+    max-height: 48px;
+    border-radius: 14px;
+  }
+
+  .logo h2 {
     font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .menu-dots {
+    width: 20px;
+    height: 20px;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .nav-menu a {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
   }
 }

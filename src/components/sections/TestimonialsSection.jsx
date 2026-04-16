@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './TestimonialsSection.css';
-import EllipseImage from '../../assets/Ellipse 3.png';
+import EllipseImage from '../../assets/Ellipse 3.webp';
 
 const TestimonialsSection = ({
   initialIndex = 0,
@@ -27,43 +27,37 @@ const TestimonialsSection = ({
       id: '1',
       name: 'Akshat Jain',
       role: 'Chief Executive Officer',
-      quote: 'Working with AIB Innovations transformed our business. Their innovative approach and technical expertise delivered results beyond our expectations.',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop'
+      quote: 'Working with AIB Technovation transformed our business. Their innovative approach and technical expertise delivered results beyond our expectations.'
     },
     {
       id: '2',
       name: 'Bhavya Kothari',
       role: 'C Technology Officer',
-      quote: 'The team at AIB demonstrated exceptional skill in building our platform. Their attention to detail and commitment to quality is unmatched.',
-      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop'
+      quote: 'The team at AIB demonstrated exceptional skill in building our platform. Their attention to detail and commitment to quality is unmatched.'
     },
     {
       id: '3',
       name: 'Ishan Jain',
       role: 'Chief Operating Officer',
-      quote: 'AIB Innovations brought our vision to life with their cutting-edge solutions. The entire process was smooth and highly professional.',
-      avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop'
+      quote: 'AIB Technovation brought our vision to life with their cutting-edge solutions. The entire process was smooth and highly professional.'
     },
     {
       id: '4',
       name: 'Priya Sharma',
       role: 'Head of Design',
-      quote: 'Their creative approach and technical prowess created a product that exceeded all our requirements. Truly exceptional work.',
-      avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop'
+      quote: 'Their creative approach and technical prowess created a product that exceeded all our requirements. Truly exceptional work.'
     },
     {
       id: '5',
       name: 'Rahul Verma',
       role: 'Lead Developer',
-      quote: 'The innovation and dedication shown by AIB team is remarkable. They delivered a robust solution that perfectly fits our needs.',
-      avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop'
+      quote: 'The innovation and dedication shown by AIB team is remarkable. They delivered a robust solution that perfectly fits our needs.'
     },
     {
       id: '6',
       name: 'Sarah Chen',
       role: 'Product Manager',
-      quote: 'Outstanding collaboration and execution. AIB Innovations delivered a seamless experience from concept to deployment.',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop'
+      quote: 'Outstanding collaboration and execution. AIB Technovation delivered a seamless experience from concept to deployment.'
     }
   ];
 
@@ -152,12 +146,21 @@ const TestimonialsSection = ({
                     <button
                       onClick={() => handleSelect(index)}
                       className={`avatar-button ${isCenter ? 'active' : ''}`}
+                      aria-label={item.name}
                     >
-                      <img
-                        src={item.avatarUrl}
-                        alt={item.name}
-                        className="avatar-image"
-                      />
+                      <svg
+                        className="avatar-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+                      </svg>
                     </button>
 
                     {/* Name + Role - only show for center */}

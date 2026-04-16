@@ -56,13 +56,15 @@ const ServicesSection = () => {
   ];
 
   useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="services-section">

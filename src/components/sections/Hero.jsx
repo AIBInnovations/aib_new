@@ -5,7 +5,15 @@ import heroVideo from '../../assets/hero_video.mp4';
 const Hero = () => {
   return (
     <section className="hero" id="home">
-      <video className="hero-video" autoPlay loop muted playsInline>
+      <video
+        className="hero-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        disablePictureInPicture
+      >
         <source src={heroVideo} type="video/mp4" />
       </video>
       <div className="hero-container">

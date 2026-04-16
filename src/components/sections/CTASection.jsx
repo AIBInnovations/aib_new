@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CTASection.css';
-import ctaCurveImage from '../../assets/Ellipse 8 (4).png';
+import ctaCurveImage from '../../assets/Ellipse 8 (4).webp';
 
 const CTASection = () => {
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ const CTASection = () => {
               </defs>
               <text className="circular-text">
                 <textPath href="#circlePath" startOffset="0%">
-                  AIB Innovations • AIB Innovations •
+                  AIB Technovation • AIB Technovation •
                 </textPath>
               </text>
             </svg>

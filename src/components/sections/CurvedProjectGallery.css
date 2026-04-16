@@ -179,7 +179,7 @@
 
 /* CTA Button */
 .cta-container {
-  width: 100vw;
+  width: 100%;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -262,4 +262,78 @@
 
 .cta-button:hover .cta-arrow {
   transform: rotate(-45deg);
+}
+
+/* ── Mobile responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .curved-section {
+    padding: 4rem 0;
+  }
+
+  .projects-track {
+    gap: 1rem;
+    padding: 0 1rem;
+    height: 18rem;
+  }
+
+  .cta-button {
+    width: 200px;
+    height: 58px;
+    padding: 0 8px 0 1.25rem;
+  }
+
+  .cta-text {
+    font-size: 15px;
+  }
+
+  .cta-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Always show title on mobile — there is no hover */
+  .title-overlay {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .curved-section {
+    padding: 3rem 0;
+  }
+
+  .projects-track {
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+    height: 14rem;
+  }
+
+  .project-item {
+    width: 200px;
+    min-width: 160px;
+  }
+
+  .project-title {
+    font-size: 0.8rem;
+  }
+
+  .cta-container {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .cta-button {
+    width: 170px;
+    height: 48px;
+    padding: 0 6px 0 1rem;
+  }
+
+  .cta-text {
+    font-size: 13px;
+  }
+
+  .cta-arrow {
+    width: 36px;
+    height: 36px;
+  }
 }

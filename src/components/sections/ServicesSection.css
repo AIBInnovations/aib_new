@@ -245,11 +245,12 @@
 
   .service-arrow {
     position: absolute;
-    right: 4%;
-    top: 20px;
+    right: 12px;
+    top: 18px;
     transform: rotate(90deg);
     padding: 8px;
     transition: transform 0.3s ease;
+    z-index: 5;
   }
 
   .service-item.accordion-open .service-arrow {

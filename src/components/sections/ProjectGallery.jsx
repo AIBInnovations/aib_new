@@ -6,45 +6,45 @@ import './ProjectGallery.css';
 const PROJECTS = [
   {
     id: 1,
-    title: 'PROJECT 1',
+    title: 'ROCCIA',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80',
-    category: 'Web Development'
+    image: '/web/roccia.webp',
+    category: 'Web Design'
   },
   {
     id: 2,
-    title: 'PROJECT 2',
+    title: 'THIS IS THAT',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
-    category: 'Mobile App'
+    image: '/web/tita.webp',
+    category: 'Web Design'
   },
   {
     id: 3,
-    title: 'PROJECT 3',
+    title: 'NINE HAWKS',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-    category: 'UI/UX Design'
+    image: '/web/ninehawks.webp',
+    category: 'Web Design'
   },
   {
     id: 4,
-    title: 'PROJECT 4',
+    title: 'CLOSET',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80',
-    category: 'Branding'
+    image: '/web/closet.webp',
+    category: 'Web Application'
   },
   {
     id: 5,
-    title: 'PROJECT 5',
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
-    category: 'Web Development'
+    title: 'EVARA',
+    year: '2024',
+    image: '/web/evara.webp',
+    category: 'Web Design'
   },
   {
     id: 6,
-    title: 'PROJECT 6',
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-    category: 'Mobile App'
+    title: 'MOTIVATA',
+    year: '2024',
+    image: '/web/motiveta.webp',
+    category: 'Web Design'
   },
 ];
 
@@ -174,6 +174,13 @@ const ProjectGallery = () => {
         <div className="carousel-track" ref={trackRef}>
           {[...PROJECTS, ...PROJECTS].map((project, index) => (
             <div className="project-card" key={`${project.id}-${index}`}>
+              <img
+                className="card-image"
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                draggable="false"
+              />
               <div className="card-content">
                 <h3>{project.title}</h3>
                 <p>{project.category}</p>

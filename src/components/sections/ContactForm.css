@@ -201,7 +201,7 @@
   }
 
   .form-images {
-    min-height: 500px;
+    min-height: 400px;
   }
 }
 
@@ -222,7 +222,37 @@
     gap: 40px;
   }
 
+  .form-images {
+    min-height: 300px;
+  }
+
   .image-small-group {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-section {
+    padding: 60px 5%;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .message-title {
+    font-size: 22px;
+  }
+
+  .form-content {
+    gap: 28px;
+  }
+
+  .form-images {
+    min-height: 240px;
+  }
+
+  .message-subtitle {
+    font-size: 13px;
   }
 }

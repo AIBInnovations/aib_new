@@ -18,6 +18,45 @@
   background: #B8B8B8;
   z-index: 5;
   transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Image inside the card — grows modestly when card grows */
+.animated-square::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  background: url('/service.jpeg') center/cover no-repeat;
+  z-index: 1;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+              height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Black overlay sitting on top of the image, same size */
+.animated-square::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  pointer-events: none;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+              height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When the card expands to fullscreen, the image fills the viewport */
+.animated-square.full-screen::before,
+.animated-square.full-screen::after {
+  width: 100vw;
+  height: 100vh;
 }
 
 .animated-square.initial {
@@ -72,13 +111,13 @@
   display: block;
 }
 
-/* Inverted black text - only visible where square overlaps */
+/* Inverted text - only visible where square overlaps (white on dark image) */
 .title-text-inverted {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  color: #000000;
+  color: #ffffff;
   clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
   transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 15;
@@ -95,16 +134,48 @@
 
 @media (max-width: 768px) {
   .services-hero {
-    padding: 6rem 2rem;
+    padding: 6rem 1.5rem;
   }
 
   .services-hero-title {
     font-size: 48px;
+    white-space: normal;
+  }
+
+  .animated-square.initial,
+  .animated-square.covering-text {
+    width: 85vw;
+    max-width: 420px;
+    height: 260px;
+  }
+
+  .animated-square::before,
+  .animated-square::after {
+    width: 85vw;
+    max-width: 420px;
+    height: 260px;
   }
 }
 
 @media (max-width: 480px) {
+  .services-hero {
+    padding: 5rem 1rem;
+  }
+
   .services-hero-title {
-    font-size: 36px;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+  }
+
+  .animated-square.initial,
+  .animated-square.covering-text {
+    width: 88vw;
+    height: 200px;
+  }
+
+  .animated-square::before,
+  .animated-square::after {
+    width: 88vw;
+    height: 200px;
   }
 }
