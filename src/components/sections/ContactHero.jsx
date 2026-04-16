@@ -5,6 +5,9 @@ const ContactHero = () => {
   const [selectedDate, setSelectedDate] = useState(6);
   const [selectedTime, setSelectedTime] = useState('11:00am');
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 9)); // October 2025
+  const [timeFormat, setTimeFormat] = useState('12h');
+  const [bookingStatus, setBookingStatus] = useState('idle'); // idle | loading | success | error
+  const [bookingMsg, setBookingMsg] = useState('');
 
   const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
@@ -20,11 +23,9 @@ const ContactHero = () => {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     const days = [];
-    // Add empty cells for days before month starts
     for (let i = 0; i < firstDay; i++) {
       days.push(null);
     }
-    // Add all days in month
     for (let i = 1; i <= daysInMonth; i++) {
       days.push(i);
     }
@@ -40,6 +41,38 @@ const ContactHero = () => {
 
   const handleNextMonth = () => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1));
+  };
+
+  const handleConfirmBooking = async () => {
+    if (!selectedDate || !selectedTime) return;
+
+    setBookingStatus('loading');
+    setBookingMsg('');
+
+    try {
+      const res = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          date: selectedDate,
+          time: selectedTime,
+          month: monthNames[currentMonth.getMonth()],
+          year: currentMonth.getFullYear(),
+        }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setBookingStatus('success');
+        setBookingMsg('Booking confirmed! We will reach out shortly.');
+      } else {
+        setBookingStatus('error');
+        setBookingMsg(data.error || 'Failed to confirm booking.');
+      }
+    } catch {
+      setBookingStatus('error');
+      setBookingMsg('Network error. Please try again.');
+    }
   };
 
   return (
@@ -135,27 +168,56 @@ const ContactHero = () => {
               </div>
 
               <div className="time-selection">
-              <div className="time-header">
-                <span className="selected-date">Thu 06</span>
-                <div className="time-toggle">
-                  <button className="toggle-btn active">12h</button>
-                  <button className="toggle-btn">24h</button>
+                <div className="time-header">
+                  <span className="selected-date">
+                    {monthNames[currentMonth.getMonth()].slice(0, 3)} {String(selectedDate).padStart(2, '0')}
+                  </span>
+                  <div className="time-toggle">
+                    <button
+                      className={`toggle-btn ${timeFormat === '12h' ? 'active' : ''}`}
+                      onClick={() => setTimeFormat('12h')}
+                    >
+                      12h
+                    </button>
+                    <button
+                      className={`toggle-btn ${timeFormat === '24h' ? 'active' : ''}`}
+                      onClick={() => setTimeFormat('24h')}
+                    >
+                      24h
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div className="time-slots">
-                {timeSlots.map(time => (
-                  <button
-                    key={time}
-                    className={`time-slot ${time === selectedTime ? 'selected' : ''}`}
-                    onClick={() => setSelectedTime(time)}
-                  >
-                    {time}
-                  </button>
-                ))}
-              </div>
+                <div className="time-slots">
+                  {timeSlots.map(time => (
+                    <button
+                      key={time}
+                      className={`time-slot ${time === selectedTime ? 'selected' : ''}`}
+                      onClick={() => setSelectedTime(time)}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
 
-              <button className="confirm-btn">Confirm Booking</button>
+                {bookingMsg && (
+                  <p style={{
+                    color: bookingStatus === 'success' ? '#4ade80' : '#f87171',
+                    fontSize: '13px',
+                    marginBottom: '8px',
+                    textAlign: 'center'
+                  }}>
+                    {bookingMsg}
+                  </p>
+                )}
+
+                <button
+                  className="confirm-btn"
+                  onClick={handleConfirmBooking}
+                  disabled={bookingStatus === 'loading'}
+                >
+                  {bookingStatus === 'loading' ? 'Confirming...' : 'Confirm Booking'}
+                </button>
               </div>
             </div>
           </div>

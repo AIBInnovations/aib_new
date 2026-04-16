@@ -17,7 +17,7 @@ const PortfolioProjectsGrid = () => {
 
   const projects = [
     // WEB PROJECTS
-    { id: 16, title: 'ROCCIA', subtitle: 'WEB DESIGN', year: '2024', category: 'WEB PROJECTS', image: '/web/roccia.webp', video: '/web/roccia.mp4', link: 'https://roccia-web.vercel.app/' },
+    { id: 16, title: 'ROCCIA', subtitle: 'WEB DESIGN', year: '2024', category: 'WEB PROJECTS', image: '/web/roccia.webp', video: '/web/roccia.mp4', link: 'https://roccia-new.vercel.app/' },
     { id: 6, title: 'THIS IS THAT', subtitle: 'WEB DESIGN', year: '2024', category: 'WEB PROJECTS', image: '/web/tita.webp', video: '/web/tita.mp4', link: 'https://thisisthat.co.in/' },
     { id: 7, title: 'NINE HAWKS', subtitle: 'WEB DESIGN', year: '2024', category: 'WEB PROJECTS', image: '/web/ninehawks.webp', video: '/web/ninehawks.mp4', link: 'https://ninehauk.vercel.app/' },
     { id: 8, title: 'CLOSET', subtitle: 'WEB DESIGN', year: '2024', category: 'WEB PROJECTS', image: '/web/closet.webp', video: '/web/closet.mp4', link: 'https://closet-web-jade.vercel.app/' },

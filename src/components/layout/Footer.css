@@ -6,6 +6,7 @@
   color: #1a1a1a;
   padding: 80px 5% 40px 5%;
   position: relative;
+  overflow: hidden;
 }
 
 .footer-container {
@@ -14,11 +15,11 @@
   margin: 0 auto;
 }
 
-/* Top Section */
+/* ── Top Section ── */
 .footer-top {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 80px;
+  grid-template-columns: 1fr auto minmax(300px, 380px);
+  gap: 60px;
   margin-bottom: 60px;
   align-items: start;
 }
@@ -31,7 +32,7 @@
 .tagline-text {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: clamp(28px, 3vw, 48px);
+  font-size: clamp(24px, 2.8vw, 48px);
   line-height: 1.2;
   margin: 0;
   color: #1a1a1a;
@@ -40,13 +41,12 @@
 /* Navigation Links */
 .footer-nav {
   display: flex;
-  gap: 60px;
 }
 
 .footer-nav-column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .footer-link {
@@ -56,6 +56,7 @@
   color: #1a1a1a;
   text-decoration: none;
   transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
 
 .footer-link:hover {
@@ -67,7 +68,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 350px;
+  width: 100%;
 }
 
 .contact-heading {
@@ -99,6 +100,7 @@
 
 .footer-input {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -140,7 +142,7 @@
 /* Social Icons */
 .footer-social {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -158,6 +160,7 @@
   font-weight: 600;
   font-size: 14px;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .social-icon:hover {
@@ -192,13 +195,14 @@
   color: #1a1a1a;
   text-decoration: underline;
   transition: opacity 0.3s ease;
+  word-break: break-all;
 }
 
 .chat-email:hover {
   opacity: 0.6;
 }
 
-/* Divider */
+/* ── Divider ── */
 .footer-divider {
   width: 100%;
   height: 1px;
@@ -206,28 +210,43 @@
   margin: 40px 0;
 }
 
-/* Large Company Name */
+/* ── Large Company Name ── */
 .footer-company-name {
   margin-bottom: 40px;
+  width: 100%;
+  overflow: hidden;
 }
 
-.company-name-text {
+/* Shared base for both words */
+.company-name-aib,
+.company-name-technovation {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 900;
-  font-size: clamp(60px, 12vw, 180px);
-  line-height: 1;
+  line-height: 0.92;
   margin: 0;
   color: #1a1a1a;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  display: block;
 }
 
-/* Bottom Copyright */
+/* Both words use the same font-size — TECHNOVATION spans full width,
+   AIB sits naturally at ~25% (3 of 12 chars) */
+.company-name-aib {
+  font-size: clamp(36px, 13vw, 210px);
+}
+
+.company-name-technovation {
+  font-size: clamp(36px, 13vw, 210px);
+}
+
+/* ── Bottom Copyright ── */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
 }
 
 .footer-copyright {
@@ -262,64 +281,122 @@
   opacity: 0.5;
 }
 
-/* Responsive Design */
+/* ══════════════════════════════
+   RESPONSIVE — Tablet (≤ 1024px)
+══════════════════════════════ */
 @media (max-width: 1024px) {
   .footer-top {
-    grid-template-columns: 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 48px;
+  }
+
+  /* Tagline spans full width on first row */
+  .footer-tagline {
+    grid-column: 1 / -1;
+    max-width: 100%;
   }
 
   .footer-nav {
-    gap: 40px;
+    gap: 48px;
   }
 
   .footer-contact {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
+/* ══════════════════════════════
+   RESPONSIVE — Mobile (≤ 768px)
+══════════════════════════════ */
 @media (max-width: 768px) {
   .footer {
-    padding: 60px 5% 30px 5%;
+    padding: 56px 6% 32px 6%;
   }
 
   .footer-top {
-    gap: 40px;
+    grid-template-columns: 1fr;
+    grid-template-rows: unset;
+    gap: 36px;
+    margin-bottom: 48px;
   }
 
+  .footer-tagline {
+    grid-column: unset;
+    max-width: 100%;
+  }
+
+  .tagline-text {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+
+  /* Nav links side-by-side */
   .footer-nav {
     flex-direction: row;
-    gap: 40px;
-    line-height: 0.9;
+    gap: 36px;
     flex-wrap: wrap;
   }
 
-  .footer-contact {
-    min-width: 0;
-    width: 100%;
+  .footer-nav-column {
+    gap: 14px;
   }
 
-  .company-name-text {
-    font-size: clamp(40px, 10vw, 80px);
+  .footer-link {
+    font-size: 16px;
+  }
+
+  /* Contact full width */
+  .footer-contact {
+    width: 100%;
+    gap: 18px;
+  }
+
+  .contact-heading {
+    font-size: 18px;
+  }
+
+  /* Company name */
+  .company-name-aib {
+    font-size: clamp(28px, 13vw, 80px);
+  }
+  .company-name-technovation {
+    font-size: clamp(28px, 13vw, 80px);
+  }
+
+  .footer-divider {
+    margin: 32px 0;
   }
 
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
   }
 }
 
+/* ══════════════════════════════
+   RESPONSIVE — Small (≤ 480px)
+══════════════════════════════ */
 @media (max-width: 480px) {
   .footer {
-    padding: 50px 5% 24px 5%;
+    padding: 48px 5% 28px 5%;
+  }
+
+  .footer-top {
+    gap: 28px;
+    margin-bottom: 36px;
   }
 
   .tagline-text {
-    font-size: clamp(22px, 6vw, 32px);
+    font-size: clamp(20px, 7vw, 30px);
   }
 
   .footer-nav {
-    gap: 24px;
+    gap: 28px;
+  }
+
+  .footer-nav-column {
+    gap: 12px;
   }
 
   .footer-link {
@@ -327,19 +404,20 @@
   }
 
   .contact-heading {
-    font-size: 17px;
-  }
-
-  .chat-heading {
     font-size: 16px;
   }
 
+  .chat-heading {
+    font-size: 15px;
+  }
+
   .chat-email {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .footer-input {
     font-size: 13px;
+    padding: 8px 8px;
   }
 
   .footer-submit-button {
@@ -353,25 +431,39 @@
   }
 
   .social-icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .social-icon svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
-  .company-name-text {
-    font-size: clamp(32px, 12vw, 56px);
+  /* Company name */
+  .company-name-aib {
+    font-size: clamp(24px, 13vw, 56px);
+    letter-spacing: -0.01em;
+  }
+  .company-name-technovation {
+    font-size: clamp(24px, 13vw, 56px);
+    letter-spacing: -0.01em;
   }
 
   .footer-divider {
-    margin: 28px 0;
+    margin: 24px 0;
+  }
+
+  .footer-bottom {
+    gap: 10px;
   }
 
   .footer-copyright,
   .footer-bottom-link {
     font-size: 12px;
+  }
+
+  .footer-links {
+    gap: 8px;
   }
 }

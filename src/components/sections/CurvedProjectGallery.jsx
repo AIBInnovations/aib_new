@@ -7,7 +7,7 @@ const defaultPanels = [
     id: 1,
     title: 'Roccia — Luxury Interiors Web Experience',
     image: '/web/roccia.webp',
-    href: 'https://roccia-web.vercel.app/'
+    href: 'https://roccia-new.vercel.app/'
   },
   {
     id: 2,

@@ -4,11 +4,34 @@ import ctaCurveImage from '../../assets/Ellipse 8 (4).webp';
 
 const CTASection = () => {
   const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [statusMsg, setStatusMsg] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Email submitted:', email);
-    // Handle email submission
+    setStatus('loading');
+    setStatusMsg('');
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus('success');
+        setStatusMsg(data.message);
+        setEmail('');
+      } else {
+        setStatus('error');
+        setStatusMsg(data.error || 'Something went wrong.');
+      }
+    } catch {
+      setStatus('error');
+      setStatusMsg('Network error. Please try again.');
+    }
   };
 
   return (
@@ -63,13 +86,19 @@ const CTASection = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="cta-input"
               required
+              disabled={status === 'loading'}
             />
-            <button type="submit" className="cta-submit-button" aria-label="Submit email">
+            <button type="submit" className="cta-submit-button" aria-label="Submit email" disabled={status === 'loading'}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
+          {statusMsg && (
+            <p style={{ color: status === 'success' ? '#4ade80' : '#f87171', marginTop: '10px', fontSize: '14px', textAlign: 'center' }}>
+              {statusMsg}
+            </p>
+          )}
         </form>
       </div>
     </section>

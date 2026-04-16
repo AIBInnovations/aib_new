@@ -42,11 +42,9 @@ const SAFE_ZONE = 4;
 
 const getSlot = (cardIdx, activeIdx) => {
   const offset = cardIdx - activeIdx;
-  if (offset === -2) return 1;
-  if (offset === -1) return 2;
-  if (offset === 0) return 3;
-  if (offset === 1) return 4;
-  if (offset === 2) return 5;
+  if (offset === -1) return 1;
+  if (offset === 0) return 2;
+  if (offset === 1) return 3;
   return null;
 };
 

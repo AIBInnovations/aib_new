@@ -41,8 +41,23 @@
   text-align: left;
 }
 
+.timeline-row.left .timeline-content {
+  justify-self: start;
+}
+
+/* Right rows: text is in the LEFT column — push it toward the center line
+   and flip the accent bar to the right side */
 .timeline-row.right {
-  text-align: left;
+  text-align: right;
+}
+
+.timeline-row.right .timeline-content {
+  justify-self: end;
+  flex-direction: row-reverse;
+}
+
+.timeline-row.right .timeline-text {
+  text-align: right;
 }
 
 .timeline-circle {
@@ -51,6 +66,17 @@
   border-radius: 50%;
   background: #d9d9d9;
   justify-self: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+}
+
+.timeline-circle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .timeline-content {
@@ -108,6 +134,20 @@
   .timeline-row {
     grid-template-columns: 1fr 1fr; /* KEEP SAME */
     align-items: center;
+  }
+
+  /* Reset desktop right-row overrides */
+  .timeline-row.right {
+    text-align: left;
+  }
+
+  .timeline-row.right .timeline-content {
+    justify-self: unset;
+    flex-direction: row;
+  }
+
+  .timeline-row.right .timeline-text {
+    text-align: left;
   }
 
   .timeline-circle {

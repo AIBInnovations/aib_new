@@ -8,18 +8,38 @@ const ContactForm = () => {
     phone: '',
     message: ''
   });
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [statusMsg, setStatusMsg] = useState('');
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add form submission logic here
+    setStatus('loading');
+    setStatusMsg('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus('success');
+        setStatusMsg(data.message);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setStatus('error');
+        setStatusMsg(data.error || 'Something went wrong.');
+      }
+    } catch {
+      setStatus('error');
+      setStatusMsg('Network error. Please try again.');
+    }
   };
 
   return (
@@ -40,6 +60,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="form-input"
                 required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -52,6 +73,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="form-input"
                 required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -63,7 +85,7 @@ const ContactForm = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 className="form-input"
-                required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -76,14 +98,23 @@ const ContactForm = () => {
                 className="form-textarea"
                 rows="1"
                 required
+                disabled={status === 'loading'}
               ></textarea>
             </div>
 
-            <button type="submit" className="form-submit">
-              Submit
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            {statusMsg && (
+              <p style={{ color: status === 'success' ? '#4ade80' : '#f87171', marginBottom: '12px', fontSize: '14px' }}>
+                {statusMsg}
+              </p>
+            )}
+
+            <button type="submit" className="form-submit" disabled={status === 'loading'}>
+              {status === 'loading' ? 'Sending...' : 'Submit'}
+              {status !== 'loading' && (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </form>
 

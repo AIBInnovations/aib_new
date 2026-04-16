@@ -131,17 +131,18 @@
 
 @media (max-width: 768px) {
   .tech-based-section {
-    height: 500px;
+    height: 560px;
   }
 
   .tech-based-image-container {
-    height: 550px;
+    height: 600px;
   }
 
   .tech-text-we-are,
   .tech-text-company {
     font-size: clamp(28px, 8vw, 60px);
     letter-spacing: 4px;
+    color: rgba(20, 20, 20, 0.25);
   }
 
   .tech-text-tech,
@@ -154,23 +155,21 @@
   }
 
   .tech-based-curve {
-    height: 150px;
+    height: 180px;
   }
 }
 
 @media (max-width: 480px) {
   .tech-based-section {
-    height: 340px;
+    height: 480px;
   }
 
   .tech-based-image-container {
-    height: 380px;
+    height: 520px;
   }
 
-  /* Widen the ellipse horizontally so it covers the narrower viewport
-     without looking like a pinched oval */
   .tech-based-image {
-    clip-path: ellipse(140% 82% at 50% 50%);
+    clip-path: ellipse(120% 82% at 50% 50%);
   }
 
   .tech-based-text-overlay {
@@ -179,20 +178,21 @@
 
   .tech-text-we-are,
   .tech-text-company {
-    font-size: clamp(18px, 6vw, 34px);
+    font-size: clamp(20px, 6vw, 34px);
     letter-spacing: 2px;
+    color: rgba(20, 20, 20, 0.25);
   }
 
   .tech-text-tech,
   .tech-text-based {
-    font-size: clamp(30px, 9vw, 54px);
+    font-size: clamp(32px, 9vw, 54px);
   }
 
   .tech-text-main {
-    gap: 8px;
+    gap: 12px;
   }
 
   .tech-based-curve {
-    height: 70px;
+    height: 130px;
   }
 }

@@ -59,6 +59,7 @@ function App() {
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </ErrorBoundary>
       <Footer />
