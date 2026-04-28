@@ -152,143 +152,188 @@
   }
 }
 
-/* Responsive Design - Small Tablet */
+/* Responsive Design - Small Tablet (preserves desktop 2-column layout) */
 @media (max-width: 900px) {
   .service-body {
-    grid-template-columns: 1fr;
-    gap: 25px;
+    grid-template-columns: 1fr 220px;
+    gap: 30px;
   }
 
   .service-right {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 
   .service-image {
-    width: 100%;
-    max-width: 400px;
-    height: 200px;
+    width: 220px;
+    height: 160px;
   }
 }
 
-/* Responsive Design - Mobile */
+/* Responsive Design - Mobile (keeps desktop 2-column layout, scaled down) */
 @media (max-width: 768px) {
   .services-list-section {
-    padding: 60px 5%;
+    padding: 60px 4%;
   }
 
   .card {
-    padding: 32px 28px;
-    margin-bottom: 24px;
-    border-radius: 18px;
+    padding: 26px 22px;
+    margin-bottom: 22px;
+    border-radius: 16px;
   }
 
   .service-header {
-    gap: 20px;
-    align-items: flex-start;
+    gap: 14px;
+    align-items: center;
   }
 
   .service-number {
-    font-size: 36px;
-    min-width: 56px;
+    font-size: 22px;
+    min-width: 36px;
     line-height: 1;
-    margin-top: 4px;
+    margin-top: 0;
   }
 
   .service-title {
-    font-size: clamp(22px, 6vw, 32px);
-    line-height: 1.15;
+    font-size: clamp(15px, 3.6vw, 22px);
+    line-height: 1.2;
   }
 
   .service-content-wrapper {
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   .service-body {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    grid-template-columns: 1fr 150px;
+    gap: 16px;
+    align-items: flex-start;
   }
 
   .service-left {
-    gap: 18px;
+    gap: 12px;
   }
 
   .service-tags {
-    gap: 10px;
+    gap: 6px;
   }
 
   .service-tag {
-    font-size: 13px;
-    padding: 7px 14px;
+    font-size: 10px;
+    padding: 5px 10px;
+    border-radius: 16px;
   }
 
   .service-description {
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 12px;
+    line-height: 1.55;
     max-width: none;
   }
 
   .service-right {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 
   .service-image {
-    width: 100%;
-    max-width: none;
-    height: 220px;
-    border-radius: 14px;
+    width: 150px;
+    height: 110px;
+    border-radius: 10px;
   }
 }
 
-/* Responsive Design - Small Mobile */
+/* Responsive Design - Small Mobile (still keeps 2-column layout) */
 @media (max-width: 480px) {
   .services-list-section {
     padding: 50px 4%;
   }
 
   .card {
-    padding: 26px 22px;
-    margin-bottom: 20px;
-    border-radius: 16px;
+    padding: 20px 16px;
+    margin-bottom: 18px;
+    border-radius: 14px;
   }
 
   .service-header {
-    gap: 16px;
+    gap: 10px;
   }
 
   .service-number {
-    font-size: 30px;
-    min-width: 44px;
+    font-size: 18px;
+    min-width: 28px;
   }
 
   .service-title {
-    font-size: clamp(20px, 6vw, 26px);
-    line-height: 1.15;
+    font-size: clamp(13px, 4vw, 18px);
+    line-height: 1.2;
   }
 
   .service-content-wrapper {
-    margin-top: 22px;
+    margin-top: 16px;
+  }
+
+  .service-body {
+    grid-template-columns: 1fr 110px;
+    gap: 12px;
   }
 
   .service-left {
-    gap: 16px;
+    gap: 10px;
   }
 
   .service-tags {
-    gap: 8px;
+    gap: 5px;
   }
 
   .service-tag {
-    font-size: 12px;
-    padding: 6px 12px;
+    font-size: 9px;
+    padding: 4px 8px;
   }
 
   .service-description {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 11px;
+    line-height: 1.5;
   }
 
   .service-image {
-    height: 180px;
-    border-radius: 12px;
+    width: 110px;
+    height: 85px;
+    border-radius: 8px;
+  }
+}
+
+/* Responsive Design - Extra Small Mobile (still keeps 2-column layout) */
+@media (max-width: 360px) {
+  .card {
+    padding: 16px 14px;
+  }
+
+  .service-header {
+    gap: 8px;
+  }
+
+  .service-number {
+    font-size: 16px;
+    min-width: 24px;
+  }
+
+  .service-title {
+    font-size: clamp(12px, 4vw, 16px);
+  }
+
+  .service-body {
+    grid-template-columns: 1fr 90px;
+    gap: 10px;
+  }
+
+  .service-tag {
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+
+  .service-description {
+    font-size: 10px;
+  }
+
+  .service-image {
+    width: 90px;
+    height: 70px;
   }
 }

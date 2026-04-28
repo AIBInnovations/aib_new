@@ -60,14 +60,14 @@ const Header = () => {
     <header className={`header ${isLightBackground ? 'light-bg' : ''}`} ref={headerRef}>
       <div
         className={`header-glass ${isHovered ? 'expanded' : ''}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onPointerEnter={(e) => { if (e.pointerType === 'mouse') setIsHovered(true); }}
+        onPointerLeave={(e) => { if (e.pointerType === 'mouse') setIsHovered(false); }}
       >
         <div className="header-top">
           <Link to="/" className="logo">
             <h2>AIB TECHNOVATIONS</h2>
           </Link>
-          <div className="menu-dots" onClick={toggleMenu}>
+          <div className="menu-dots" onClick={(e) => { e.stopPropagation(); toggleMenu(); }}>
             <span className="dot"></span>
             <span className="dot"></span>
             <span className="dot"></span>

@@ -184,96 +184,105 @@
   opacity: 1;
 }
 
-/* Responsive Design */
+/* Responsive Design — mobile mirrors desktop layout, scaled down */
 @media (max-width: 768px) {
   .services-carousel-section {
     overflow-x: hidden;
+    overflow-y: visible;
     padding: 50px 0 60px;
+    touch-action: pan-y;
   }
 
-  /* Clean mobile header: title on top, CTA button beneath, both centered. */
+  /* Keep desktop row layout: left arrow | title | CTA button */
   .carousel-header {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
     align-items: center;
-    padding: 0 6%;
-    margin-bottom: 28px;
-    text-align: center;
+    justify-content: space-between;
+    padding: 0 4%;
+    margin-bottom: 24px;
+    gap: 8px;
   }
 
   .carousel-title {
-    font-size: clamp(36px, 9vw, 56px);
+    font-size: clamp(20px, 5.6vw, 36px);
     line-height: 1;
-    order: 1;
-    width: 100%;
-    text-align: center;
     margin: 0;
+    flex: 1;
+    text-align: center;
   }
 
   .carousel-nav-btn.left {
-    display: none;
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
   }
 
   .carousel-nav-btn.right {
-    order: 2;
-    height: 48px;
-    padding: 10px 24px 10px 16px;
-    gap: 12px;
+    height: 36px;
+    padding: 6px 16px 6px 10px;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   .carousel-nav-btn.right svg {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
   }
 
   .btn-text {
-    font-size: 14px;
+    font-size: 12px;
   }
 
-  /* Tight gap between the two scrolling rows so they read as a pair
-     rather than two isolated strips with empty space between them. */
-  .carousel-container {
-    padding: 14px 0;
-  }
-
-  .carousel-container.reverse {
-    padding-top: 0;
-  }
-
-  /* Clip the wide animated track to the viewport and speed the loop up
-     so the motion is obvious on smaller screens. */
+  /* Clip animated track inside viewport; block any horizontal scroll/drag.
+     Both axes hidden so no scrollbar appears (mixing hidden+visible forces auto). */
   .carousel-container {
     overflow: hidden;
-    padding: 30px 0;
+    padding: 8px 0;
+    touch-action: pan-y;
+    overscroll-behavior-x: none;
   }
 
-  /* Force the loop to run — use full shorthand + play-state override
-     so the desktop 40s inheritance and the .paused class can't stop it. */
-  .carousel-track {
-    gap: 18px;
-    animation: scrollLeft 22s linear infinite !important;
-    animation-play-state: running !important;
+  /* Clear vertical gap between the two scrolling rows */
+  .carousel-container.reverse {
+    margin-top: 56px;
+  }
+
+  /* Mobile uses JS-driven autoplay (.js-driven). CSS keyframe animation
+     disabled here since requestAnimationFrame controls translation directly. */
+  .carousel-track,
+  .carousel-track.reverse {
+    gap: 16px;
+    animation: none !important;
     will-change: transform;
     width: max-content;
+    transition: none !important;
+    backface-visibility: hidden;
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
-  .carousel-track.reverse {
-    animation: scrollRight 22s linear infinite !important;
+  /* Tracks driven by requestAnimationFrame in ServicesCarousel.jsx */
+  .carousel-track.js-driven,
+  .carousel-track.reverse.js-driven {
+    animation: none !important;
+  }
+
+  .carousel-track.paused,
+  .carousel-track.reverse.paused {
     animation-play-state: running !important;
   }
 
-  .carousel-track.paused {
-    animation-play-state: running !important;
-  }
-
-  /* Card widths now come from JSX inline (isMobile ? 220px : width).
-     Only set height here. */
+  /* Cards: half the desktop width (set inline from JSX) and proportional height */
   .carousel-card {
-    height: 160px;
+    height: 125px;
+    transition: none !important;
   }
 
   .carousel-card.hovered {
-    transform: none;
+    transform: none !important;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   }
 }
@@ -284,51 +293,50 @@
   }
 
   .carousel-header {
-    padding: 0 5%;
-    margin-bottom: 22px;
-    gap: 16px;
+    padding: 0 3%;
+    margin-bottom: 18px;
+    gap: 6px;
   }
 
   .carousel-title {
-    font-size: 32px;
+    font-size: clamp(16px, 5vw, 24px);
+  }
+
+  .carousel-nav-btn.left {
+    width: 28px;
+    height: 28px;
   }
 
   .carousel-nav-btn.right {
-    height: 44px;
-    padding: 8px 20px 8px 14px;
-    gap: 10px;
+    height: 30px;
+    padding: 5px 12px 5px 8px;
+    gap: 6px;
   }
 
   .carousel-nav-btn.right svg {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
   }
 
   .btn-text {
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .carousel-container {
-    padding: 10px 0;
+    padding: 6px 0;
+  }
+
+  .carousel-container.reverse {
+    margin-top: 44px;
+  }
+
+  .carousel-track,
+  .carousel-track.reverse {
+    gap: 12px;
+    animation: none !important;
   }
 
   .carousel-card {
-    height: 140px;
-  }
-
-  .carousel-track {
-    gap: 14px;
-    animation: scrollLeft 18s linear infinite !important;
-    animation-play-state: running !important;
-    width: max-content;
-  }
-
-  .carousel-track.reverse {
-    animation: scrollRight 18s linear infinite !important;
-    animation-play-state: running !important;
-  }
-
-  .carousel-track.paused {
-    animation-play-state: running !important;
+    height: 110px;
   }
 }

@@ -12,13 +12,13 @@
   text-align: center;
 }
 
-.carousel-container {
+.project-gallery .carousel-container {
   width: 100%;
   overflow: hidden;
   perspective: 1400px;
 }
 
-.carousel-track {
+.project-gallery .carousel-track {
   display: flex;
   gap: 1.5rem;
   width: fit-content;
@@ -86,7 +86,7 @@
     margin-bottom: 2.5rem;
   }
 
-  .carousel-container {
+  .project-gallery .carousel-container {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -94,13 +94,13 @@
     padding: 0 1rem;
   }
 
-  .carousel-track {
+  .project-gallery .carousel-track {
     animation: none;
     transform: none !important;
     gap: 1rem;
   }
 
-  .project-card {
+  .project-gallery .project-card {
     scroll-snap-align: center;
     width: 260px;
     height: 340px;
@@ -125,20 +125,20 @@
     margin-bottom: 2rem;
   }
 
-  .project-card {
+  .project-gallery .project-card {
     width: 220px;
     height: 290px;
   }
 
-  .card-content {
+  .project-gallery .card-content {
     padding: 1.25rem;
   }
 
-  .card-content h3 {
+  .project-gallery .card-content h3 {
     font-size: 18px;
   }
 
-  .card-content p {
+  .project-gallery .card-content p {
     font-size: 12px;
   }
 }
