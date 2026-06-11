@@ -69,7 +69,7 @@ const CTASection = () => {
               </defs>
               <text className="circular-text">
                 <textPath href="#circlePath" startOffset="0%">
-                  AIB Technovation • AIB Technovation •
+                  AIB Technovations • AIB Technovations •
                 </textPath>
               </text>
             </svg>

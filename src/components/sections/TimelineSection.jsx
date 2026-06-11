@@ -6,7 +6,7 @@ const timelineEvents = [
     year: '2022',
     title: 'Company\nFounded',
     description:
-      'AIB Technovation was established with a\nmission to bridge the gap between\nadvanced software and hardware solutions\nfor emerging tech challenges',
+      'AIB Technovations was established with a\nmission to bridge the gap between\nadvanced software and hardware solutions\nfor emerging tech challenges',
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
     imageAlt: 'Startup team collaborating at founding',
   },

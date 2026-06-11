@@ -45,7 +45,7 @@ const MapSection = () => {
               </div>
               <div className="contact-text">
                 <h3 className="contact-label">Email</h3>
-                <p className="contact-value">hello@aibtechnovation.com</p>
+                <p className="contact-value">hello@aibtechnovations.com</p>
               </div>
             </div>
 
