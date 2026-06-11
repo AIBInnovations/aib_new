@@ -84,8 +84,8 @@ const ContactHero = () => {
 
         <p className="contact-hero-subtitle">
           Let's map your next move—schedule a free strategy session or reach out directly at{' '}
-          <a href="mailto:hello@aibtechnovation.com" className="contact-email">
-            hello@aibtechnovation.com
+          <a href="mailto:hello@aibtechnovations.com" className="contact-email">
+            hello@aibtechnovations.com
           </a>
         </p>
 
@@ -94,7 +94,7 @@ const ContactHero = () => {
             <div className="booking-header">
               <div className="booking-avatar">AB</div>
               <div className="booking-details">
-                <h3 className="booking-title">AIB Technovation</h3>
+                <h3 className="booking-title">AIB Technovations</h3>
                 <p className="booking-type">Planning Meeting</p>
               </div>
             </div>

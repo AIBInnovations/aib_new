@@ -6,7 +6,7 @@ const teamMembers = [
     name: 'Akshat Jain',
     role: 'Founder & CEO',
     quote:
-      'At AIB Technovation, we build with intent. Every product we ship is a reflection of our belief that great technology should feel human, responsible, and built to last.',
+      'At AIB Technovations, we build with intent. Every product we ship is a reflection of our belief that great technology should feel human, responsible, and built to last.',
     linkedin: 'https://www.linkedin.com/in/akshat-jain-261a37213/',
     image: '/team/akshat.webp',
   },

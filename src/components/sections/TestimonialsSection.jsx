@@ -27,7 +27,7 @@ const TestimonialsSection = ({
       id: '1',
       name: 'Akshat Jain',
       role: 'Chief Executive Officer',
-      quote: 'Working with AIB Technovation transformed our business. Their innovative approach and technical expertise delivered results beyond our expectations.'
+      quote: 'Working with AIB Technovations transformed our business. Their innovative approach and technical expertise delivered results beyond our expectations.'
     },
     {
       id: '2',
@@ -39,7 +39,7 @@ const TestimonialsSection = ({
       id: '3',
       name: 'Ishan Jain',
       role: 'Chief Operating Officer',
-      quote: 'AIB Technovation brought our vision to life with their cutting-edge solutions. The entire process was smooth and highly professional.'
+      quote: 'AIB Technovations brought our vision to life with their cutting-edge solutions. The entire process was smooth and highly professional.'
     },
     {
       id: '4',
@@ -57,7 +57,7 @@ const TestimonialsSection = ({
       id: '6',
       name: 'Sarah Chen',
       role: 'Product Manager',
-      quote: 'Outstanding collaboration and execution. AIB Technovation delivered a seamless experience from concept to deployment.'
+      quote: 'Outstanding collaboration and execution. AIB Technovations delivered a seamless experience from concept to deployment.'
     }
   ];
 

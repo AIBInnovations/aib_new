@@ -219,7 +219,7 @@
 
 /* Shared base for both words */
 .company-name-aib,
-.company-name-technovation {
+.company-name-technovations {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 900;
   line-height: 0.92;
@@ -230,13 +230,13 @@
   display: block;
 }
 
-/* Both words use the same font-size — TECHNOVATION spans full width,
+/* Both words use the same font-size — TECHNOVATIONS spans full width,
    AIB sits naturally at ~25% (3 of 12 chars) */
 .company-name-aib {
   font-size: clamp(36px, 13vw, 210px);
 }
 
-.company-name-technovation {
+.company-name-technovations {
   font-size: clamp(36px, 13vw, 210px);
 }
 
@@ -359,7 +359,7 @@
   .company-name-aib {
     font-size: clamp(28px, 13vw, 80px);
   }
-  .company-name-technovation {
+  .company-name-technovations {
     font-size: clamp(28px, 13vw, 80px);
   }
 
@@ -445,7 +445,7 @@
     font-size: clamp(24px, 13vw, 56px);
     letter-spacing: -0.01em;
   }
-  .company-name-technovation {
+  .company-name-technovations {
     font-size: clamp(24px, 13vw, 56px);
     letter-spacing: -0.01em;
   }
